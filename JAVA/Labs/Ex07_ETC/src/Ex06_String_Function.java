@@ -9,9 +9,11 @@ public class Ex06_String_Function {
 		String str = ""; // 문자열 초기화
 		
 		String[] strarr = { "aaa", "bbb", "ccc" };
+		
 		for (String s : strarr) {
 			System.out.println(s);
 		}
+		
 		// String 클래스의 함수
 		String ss = "hello";
 		String concatstr = ss.concat("world");
