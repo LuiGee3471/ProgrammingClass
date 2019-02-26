@@ -1,4 +1,4 @@
-package Movie;
+package movie;
 
 public class Cinema {// 영화관
 	public static void main(String[] args) {

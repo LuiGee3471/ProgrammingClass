@@ -37,7 +37,7 @@
 종료
 예매 시스템을 종료합니다
  */
-package Movie;
+package movie;
 
 import java.util.Scanner;
 

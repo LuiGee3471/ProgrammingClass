@@ -1,4 +1,4 @@
-package Movie;
+package movie;
 
 public class Seat {// 자리
 	private int seatRow; // 자리행
