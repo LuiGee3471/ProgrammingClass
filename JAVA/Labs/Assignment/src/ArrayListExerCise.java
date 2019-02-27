@@ -62,6 +62,10 @@ public class ArrayListExerCise {
 		studentList.add(new Student("권태환", 2015, "디자인"));
 		
 		System.out.println(studentList);
+		
+		ArrayList list3 = new ArrayList();
+		for (int i = 0; i < 10; i++) {
+			list3.add(true);
+		}
 	}
-
 }
