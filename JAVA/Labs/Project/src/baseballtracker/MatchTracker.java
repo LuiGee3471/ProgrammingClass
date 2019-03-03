@@ -1,3 +1,4 @@
+
 package baseballtracker;
 
 import java.util.ArrayList;

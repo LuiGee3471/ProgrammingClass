@@ -1,3 +1,4 @@
+
 package baseballtracker;
 
 import java.util.ArrayList;
@@ -46,11 +47,6 @@ public class BaseballTeam {
         }
      }
 
-    @Override
-    public String toString() {
-        return teamName;
-    }
-
     public static int getTotalMatches() {
         return totalMatches;
     }
@@ -65,10 +61,6 @@ public class BaseballTeam {
 
     public int getLosses() {
         return losses;
-    }
-
-    public int getTeamMatches() {
-        return teamMatches;
     }
     
     public double getWP() {
