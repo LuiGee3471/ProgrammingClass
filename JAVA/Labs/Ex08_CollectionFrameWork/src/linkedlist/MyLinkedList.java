@@ -1,21 +1,21 @@
 package linkedlist;
-// LinkedList °´Ã¼
+// LinkedList ê°ì²´
 public class MyLinkedList {	
 	
-	private Node header;	// listÀÇ header
-	private int size;		// listÀÇ size
+	private Node header;	// listì˜ header
+	private int size;		// listì˜ size
 	
-	// ¸®½ºÆ®ÀÇ header, size ÃÊ±âÈ­
+	// ë¦¬ìŠ¤íŠ¸ì˜ header, size ì´ˆê¸°í™”
 	public MyLinkedList(){
 		header = new Node(null);	
 		size = 0;
 	}
 	
-	// ³ëµåÀÇ µ¥ÀÌÅÍ ¸®ÅÏ
+	// ë…¸ë“œì˜ ë°ì´í„° ë¦¬í„´
 	public Object getNodeData(int index){
 	       return getNode(index).getData();
 	}
-	// ³ëµå getter
+	// ë…¸ë“œ getter
 	private Node getNode(int index){
 		
 		if(index < 0 || index >= size){
@@ -61,8 +61,8 @@ public class MyLinkedList {
 		return index;
 	}
 	
-	// ----------------------------------------------- »ğÀÔ
-	// ¸®½ºÆ® Ã³À½¿¡ »ğÀÔ
+	// ----------------------------------------------- ì‚½ì…
+	// ë¦¬ìŠ¤íŠ¸ ì²˜ìŒì— ì‚½ì…
 	public void addFirst(Object data){
 		
 		Node newNode = new Node(data);
@@ -72,11 +72,11 @@ public class MyLinkedList {
 		
 	}
 	
-	// ¸®½ºÆ® Áß°£¿¡ »ğÀÔ
+	// ë¦¬ìŠ¤íŠ¸ ì¤‘ê°„ì— ì‚½ì…
 	public void addAtmiddle(int index, Object data){
 		
-		if(index==0){		// index °¡ 0 ÀÌ¸é
-			addFirst(data);	// ¸®½ºÆ® Ã³À½¿¡ »ğÀÔ
+		if(index==0){		// index ê°€ 0 ì´ë©´
+			addFirst(data);	// ë¦¬ìŠ¤íŠ¸ ì²˜ìŒì— ì‚½ì…
 			return;			// 
 		}
 		
@@ -89,19 +89,19 @@ public class MyLinkedList {
 		size++;
 	}
 	
-	// ¸®½ºÆ® ³¡¿¡ »ğÀÔ
+	// ë¦¬ìŠ¤íŠ¸ ëì— ì‚½ì…
 	public void addLast(Object data){
 		addAtmiddle(size, data);
 	}
 	
 	
-	/*// ³¡¿¡ ³Ö±â
+	/*// ëì— ë„£ê¸°
 	public void add(Object data){
 		addLast(data);
 	}*/
 	
-	// ----------------------------------------------- »èÁ¦
-	// ¸®½ºÆ® Ã³À½²¨ »èÁ¦
+	// ----------------------------------------------- ì‚­ì œ
+	// ë¦¬ìŠ¤íŠ¸ ì²˜ìŒêº¼ ì‚­ì œ
 	public Object removeFirst(){
 		
 		Node firstNode = getNode(0);
@@ -111,7 +111,7 @@ public class MyLinkedList {
 		
 	}
 	
-	// ¸®½ºÆ® Áß°£²¨ »èÁ¦
+	// ë¦¬ìŠ¤íŠ¸ ì¤‘ê°„êº¼ ì‚­ì œ
 	public Object removeAtmiddle(int index){
 		
 		if(index<0 || index>=size){
@@ -133,7 +133,7 @@ public class MyLinkedList {
 		return removeNode.getData();
 	}
 	
-	//????? µ¥ÀÌÅÍ¸¦ ÀÔ·ÂÇØ¼­ »èÁ¦ 
+	//????? ë°ì´í„°ë¥¼ ì…ë ¥í•´ì„œ ì‚­ì œ 
 	public void removeByData(Object data){
 		
 		int nodeIndex = getNodeIndex(data);
@@ -147,7 +147,7 @@ public class MyLinkedList {
 		}
 	}
 	
-	// ¸®½ºÆ® ¸¶Áö¸·²¨ »èÁ¦
+	// ë¦¬ìŠ¤íŠ¸ ë§ˆì§€ë§‰êº¼ ì‚­ì œ
 	public Object removeLast(){
 		return removeAtmiddle(size-1);
 	}

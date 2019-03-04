@@ -1,23 +1,23 @@
 package linkedlist;
 
 public class LinkedList {
-	// Ã¹¹øÂ° ³ëµå¸¦ °¡¸®Å°´Â ÇÊµå
+	// ì²«ë²ˆì§¸ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ëŠ” í•„ë“œ
     private Node head;
-    // ¸¶Áö¸· ³ëµå¸¦ °¡¸®Å°´Â ÇÊµå
+    // ë§ˆì§€ë§‰ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ëŠ” í•„ë“œ
     private Node tail;
-    //¸®½ºÆ®ÀÇ ±æÀÌ
+    //ë¦¬ìŠ¤íŠ¸ì˜ ê¸¸ì´
     private int size = 0;
     
-    //³ëµå »ı¼º Å¬·¹½º
+    //ë…¸ë“œ ìƒì„± í´ë ˆìŠ¤
    private class Node{
 	   private Object data;
 	   private Node next;
 	   
-	   //»ı¼ºÀÚ
+	   //ìƒì„±ì
 	   public Node(Object input) {
-		   //³ëµåÀÇ data¿¡ input°ªÀ» ³ÖÀ½
+		   //ë…¸ë“œì˜ dataì— inputê°’ì„ ë„£ìŒ
 		   this.data = input;
-		   //´ÙÀ½ ³ëµå¸¦ °¡¸®Å°´Â ÇÊµåÀÇ °ªÀº null ´ëÀÔ
+		   //ë‹¤ìŒ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ëŠ” í•„ë“œì˜ ê°’ì€ null ëŒ€ì…
 		   this.next = null;
 	   }
 	   
@@ -26,7 +26,7 @@ public class LinkedList {
 	   }
    }
  
-   //Æ¯Á¤ À§Ä¡ÀÇ ³ëµå¸¦ Ã£´Â ¸Ş¼Òµå
+   //íŠ¹ì • ìœ„ì¹˜ì˜ ë…¸ë“œë¥¼ ì°¾ëŠ” ë©”ì†Œë“œ
    Node node(int index) {
 	    Node x = head;
     	for (int i = 0; i < index; i++)
@@ -34,15 +34,15 @@ public class LinkedList {
 	    return x;
 	}
    
-   //ÇÊµåÀÇ Ã¹ ¹øÂ° ÀÎµ¦½º¿¡ »õ·Î¿î ³ëµå »ı¼º
+   //í•„ë“œì˜ ì²« ë²ˆì§¸ ì¸ë±ìŠ¤ì— ìƒˆë¡œìš´ ë…¸ë“œ ìƒì„±
    public void addFirst(Object input) {
-	   //»õ·Î¿î ³ëµå »ı¼º
+	   //ìƒˆë¡œìš´ ë…¸ë“œ ìƒì„±
 	   Node newNode = new Node(input);
-	   //newNode.next¿¡ ±âÁ¸ head³ëµå°¡ °¡¸®Å°°í ÀÖ´ø ³ëµå¸¦ °¡¸®Å³ ¼ö ÀÖ°Ô ÇØÁÜ 
+	   //newNode.nextì— ê¸°ì¡´ headë…¸ë“œê°€ ê°€ë¦¬í‚¤ê³  ìˆë˜ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¬ ìˆ˜ ìˆê²Œ í•´ì¤Œ 
 	   newNode.next = head;
-	 //¸®½ºÆ®ÀÇ Ã¹¹øÂ° ³ëµå¸¦ °¡¸®Å°´Â head¸¦ newNode¸¦ °¡¸®Å°°Ô ÇÔ
+	 //ë¦¬ìŠ¤íŠ¸ì˜ ì²«ë²ˆì§¸ ë…¸ë“œë¥¼ ê°€ë¦¬í‚¤ëŠ” headë¥¼ newNodeë¥¼ ê°€ë¦¬í‚¤ê²Œ í•¨
 	   head = newNode;
-	   //¸®½ºÆ®ÀÇ ±æÀÌ°¡ ´Ã¾î³µ´Ù´Â °ÍÀ» Ç¥½Ã
+	   //ë¦¬ìŠ¤íŠ¸ì˜ ê¸¸ì´ê°€ ëŠ˜ì–´ë‚¬ë‹¤ëŠ” ê²ƒì„ í‘œì‹œ
 	   size++;
 	   //
 	   if(head.next == null);{
@@ -50,7 +50,7 @@ public class LinkedList {
 	   }
    }
    
-   //ÇÊµåÀÇ ¸¶Áö¸·¿¡ »õ·Î¿î ³ëµå »ı¼º
+   //í•„ë“œì˜ ë§ˆì§€ë§‰ì— ìƒˆë¡œìš´ ë…¸ë“œ ìƒì„±
    public void addLast(Object input) {
 	   Node newNode = new Node(input);
 	   if(size==0) {
@@ -86,13 +86,13 @@ public class LinkedList {
 	   }
    }
    
-   //³ëµå ÀüÃ¼ µ¥ÀÌÅÍ Ãâ·Â
+   //ë…¸ë“œ ì „ì²´ ë°ì´í„° ì¶œë ¥
    public String toString() {
 	   if(size==0) return "[]";
 	   else {
 		   Node temp1 = head;
 		   String str = "[ ";
-		   //¸¶Áö¸· ³ëµå Àü±îÁö µ¥ÀÌÅÍ Ãâ·Â
+		   //ë§ˆì§€ë§‰ ë…¸ë“œ ì „ê¹Œì§€ ë°ì´í„° ì¶œë ¥
 		   while(temp1.next!=null) {
 			   str+=temp1.data+", ";
 			   temp1 = temp1.next;
@@ -102,7 +102,7 @@ public class LinkedList {
 	   }
    }
    
-   //Æ¯Á¤ À§Ä¡ ³ëµåÀÇ µ¥ÀÌÅÍ Å½»ö
+   //íŠ¹ì • ìœ„ì¹˜ ë…¸ë“œì˜ ë°ì´í„° íƒìƒ‰
    public Object indexToString(int index) {
 	   if(size<=index) {
 		   return false;
@@ -113,7 +113,7 @@ public class LinkedList {
 	   }
    }
    
-   //Ã³À½ ³ëµå »èÁ¦
+   //ì²˜ìŒ ë…¸ë“œ ì‚­ì œ
    public Object firstDelete() {
 	   Node temp1 = head;
 	   head = temp1.next;
@@ -125,7 +125,7 @@ public class LinkedList {
 	   return tempData;
    }
    
-   //Æ¯Á¤ À§Ä¡ ³ëµå »èÁ¦(Ãß°¡ Áß)
+   //íŠ¹ì • ìœ„ì¹˜ ë…¸ë“œ ì‚­ì œ(ì¶”ê°€ ì¤‘)
    public void indexDelete(int index) {
 	   Node temp1 = node(index-1);	   
 	   temp1.next = node(index+1);
