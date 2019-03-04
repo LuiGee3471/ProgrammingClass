@@ -1,8 +1,5 @@
 package baseballtracker;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 public class BaseballTeam {
     private String teamName;
     private int wins;

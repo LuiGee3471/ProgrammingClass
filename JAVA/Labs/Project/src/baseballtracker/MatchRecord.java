@@ -17,36 +17,4 @@ public class MatchRecord {
     public String toString() {
         return result + " / 상대팀 : " + opponent + " / 스코어 " + myScore + ":" + opponentScore;
     }
-
-    public BaseballTeam getLoser() {
-        return loser;
-    }
-
-    public void setLoser(BaseballTeam loser) {
-        this.loser = loser;
-    }
-
-    public BaseballTeam getWinner() {
-        return winner;
-    }
-
-    public void setWinner(BaseballTeam winner) {
-        this.winner = winner;
-    }
-
-    public int getWinnerScore() {
-        return winnerScore;
-    }
-
-    public void setWinnerScore(int winnerScore) {
-        this.winnerScore = winnerScore;
-    }
-
-    public int getLoserScore() {
-        return loserScore;
-    }
-
-    public void setLoserScore(int loserScore) {
-        this.loserScore = loserScore;
-    }
 }
