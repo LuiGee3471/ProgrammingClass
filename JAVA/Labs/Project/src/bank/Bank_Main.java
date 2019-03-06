@@ -10,8 +10,6 @@ public class Bank_Main {
 		 * 
 		 * ATM 이용 종료 후 관리 시스템 동작
 		 * 
-		 * 
-		 * 
 		 */
 		Bank KB = new Bank();
 		KB.addAccount("10001", "윤종석");
