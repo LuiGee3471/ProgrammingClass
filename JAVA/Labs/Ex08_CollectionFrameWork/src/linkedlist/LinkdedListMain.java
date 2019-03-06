@@ -17,7 +17,7 @@ public class LinkdedListMain {
 		list.addFirst(50);
 		System.out.println(list);
 
-		// ÀÎµ¦½º·Î °Ë»ö
+		// ì¸ë±ìŠ¤ë¡œ ê²€ìƒ‰
 		System.out.println(list.getNodeData(4));
 
 		list.removeAtmiddle(2);
@@ -28,11 +28,11 @@ public class LinkdedListMain {
 		list.removeLast();
 		System.out.println(list);
 
-		System.out.println("Å©±â" + list.getListsize());
+		System.out.println("í¬ê¸°" + list.getListsize());
 		/*
 		 * long starttime=0; long endtime=0; for(int i=0; i<1000000;i++){ list.add(i); }
 		 * 
-		 * //remove System.out.print("»èÁ¦ ÇÒ index¸¦ ¼±ÅÃ :"); Scanner scan = new
+		 * //remove System.out.print("ì‚­ì œ í•  indexë¥¼ ì„ íƒ :"); Scanner scan = new
 		 * Scanner(System.in); int index = scan.nextInt();
 		 * 
 		 * starttime=System.currentTimeMillis();
@@ -42,7 +42,7 @@ public class LinkdedListMain {
 		 * endtime = System.currentTimeMillis(); long zz=endtime-starttime;
 		 * 
 		 * System.out.println(starttime); System.out.println(endtime);
-		 * System.out.println("»èÁ¦ÇÏ´Âµ¥ °É¸®´Â ½Ã°£ : " +zz
+		 * System.out.println("ì‚­ì œí•˜ëŠ”ë° ê±¸ë¦¬ëŠ” ì‹œê°„ : " +zz
 		 * 
 		 */
 	}

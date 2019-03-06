@@ -19,14 +19,6 @@ public class Account {
 		return "계좌번호 : " + accountNo + " | 계좌 소유자명 : " + name + "\n";
 	}
 
-	public String getAccountNo() {
-		return accountNo;
-	}
-
-	public String getName() {
-		return name;
-	}
-
 	public Account(String accountNo, String name) {
 		this.accountNo = accountNo;
 		this.name = name;
@@ -53,21 +45,19 @@ public class Account {
 		}
 	}
 	
+	public String getAccountNo() {
+		return accountNo;
+	}
+
+	public String getName() {
+		return name;
+	}
+	
 	public long getBalance() { // 잔고 확인
 		return balance;
 	}
 	
 	public ArrayList<Transaction> getTransactions() { // 거래내역 보기
-//		ListIterator<Transaction> tranIterator = transactions.listIterator();
-//		
-//		while (tranIterator.hasNext()) {
-//			tranIterator.next();
-//		}
-//		
-//		while (tranIterator.hasPrevious()) {
-//			System.out.println(tranIterator.previous());
-//		}
-		
 		return transactions;
 	}
 }

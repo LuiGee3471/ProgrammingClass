@@ -1,33 +1,29 @@
 package linkedlist;
 
-// listÀÇ node Å¬·¡½º
-public class Node{		
-		
-		private Object data;	// nodeÀÇ data
-		private Node nextNode;	// nodeÀÇ ´ÙÀ½ ³ëµå(¿¬°á)
-		
-		public Node(Object data){		// ³ëµåÀÇ data¿Í ´ÙÀ½ ³ëµå ÃÊ±âÈ­
-			
-			this.data = data;
-			this.nextNode = null;
-		}
+// listì˜ node í´ë˜ìŠ¤
+public class Node {
+	private Object data; // nodeì˜ data
+	private Node nextNode; // nodeì˜ ë‹¤ìŒ ë…¸ë“œ(ì—°ê²°)
 
-		public Object getData() {
-			return data;
-		}
+	public Node(Object data) { // ë…¸ë“œì˜ dataì™€ ë‹¤ìŒ ë…¸ë“œ ì´ˆê¸°í™”
 
-		public void setData(Object data) {
-			this.data = data;
-		}
+		this.data = data;
+		this.nextNode = null;
+	}
 
-		public Node getNextNode() {
-			return nextNode;
-		}
+	public Object getData() {
+		return data;
+	}
 
-		public void setNextNode(Node nextNode) {
-			this.nextNode = nextNode;
-		}
-		
-	
-	
+	public void setData(Object data) {
+		this.data = data;
+	}
+
+	public Node getNextNode() {
+		return nextNode;
+	}
+
+	public void setNextNode(Node nextNode) {
+		this.nextNode = nextNode;
+	}
 }

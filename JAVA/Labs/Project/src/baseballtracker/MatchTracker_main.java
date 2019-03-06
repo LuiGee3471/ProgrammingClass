@@ -17,7 +17,6 @@ public class MatchTracker_main {
         mt.writeRecord("롯데 자이언츠", "SK 와이번스", 5, 6);
         mt.writeRecord("삼성 라이온즈", "두산 베어스", 6, 3);
 
-
         mt.writeRecord("한화 이글스", "넥센 히어로즈", 4, 1);
         mt.writeRecord("KT 위즈", "KIA 타이거즈", 1, 14);
         mt.writeRecord("LG 트윈스", "NC 다이노스", 1, 7);
