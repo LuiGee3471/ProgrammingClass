@@ -6,7 +6,7 @@ import java.io.IOException;
 public class Ex03_Stream_CopyFile {
 
 	public static void main(String[] args) throws IOException {
-		String oriFile = "C:\\Temp\\1.jpg";
+		String oriFile = "C:\\Temp\\NEW\\Chrysanthemum.jpg";
 		String targetFile = "copy.jpg";
 		// default 경로 : C:\FrontEndBackEnd\JAVA\Labs\Ex09_IO
 		// 경로를 명시하지 않으면 >> 프로젝트 폴더
