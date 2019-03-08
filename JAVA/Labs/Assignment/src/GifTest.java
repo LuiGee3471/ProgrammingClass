@@ -1,7 +1,7 @@
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
-//from w w w . j  av a 2 s  .c o  m
+// from w w w . j av a 2 s .c o m
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
@@ -22,8 +22,8 @@ public class GifTest {
   }
 }
 
-class ImagePanel extends JPanel {
 
+class ImagePanel extends JPanel {
   Image image;
 
   public ImagePanel() {
@@ -37,5 +37,4 @@ class ImagePanel extends JPanel {
       g.drawImage(image, 0, 0, this);
     }
   }
-
 }
