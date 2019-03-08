@@ -16,9 +16,10 @@ import java.util.Set;
 
 public class GradeCheck {
 	private static Map<Integer, Grade> gradeMap = new HashMap<Integer, Grade>();
-	private static int gradeCount = 1;
+	private static int gradeCount = 0;
 	private static String saveFile = "C:\\Temp\\gradeCheck.txt";
 	private static Scanner scanner = new Scanner(System.in);
+	private static int appendChecker = 0;
 
 	public static void main(String[] args) {
 		GradeCheck gc = new GradeCheck();
@@ -56,8 +57,7 @@ public class GradeCheck {
 	}
 
 	private void inputData() {
-		gradeMap.put(gradeCount, Grade.input());
-		gradeCount += 1;
+		gradeMap.put(++gradeCount, Grade.input());
 	}
 
 	private void deleteData() {
@@ -77,7 +77,7 @@ public class GradeCheck {
 	}
 
 	private void printData() {
-		if (gradeCount == 1) {
+		if (gradeCount == 0) {
 			System.out.println("입력된 정보가 없습니다");
 			return;
 		}
@@ -92,15 +92,9 @@ public class GradeCheck {
 			System.out.printf("%d\t%.1f\t%.1f\t%.1f\t%.2f\t%s\n", i, math, java, python, avg, you);
 		}
 	}
-	
-	/*
-	 * 1	90.0	80.0	90.0	86.67	A
-2	95.0	90.0	95.0	93.33	A+
-3	90.0	80.0	90.0	86.67	A
-	 */
 
 	private void saveData() {
-		if (gradeCount == 1) {
+		if (gradeCount == 0) {
 			System.out.println("입력된 정보가 없습니다");
 			return;
 		}
@@ -110,7 +104,7 @@ public class GradeCheck {
 		File file = new File(saveFile);
 		String answer = "";
 
-		if (file.exists()) {
+		if (file.exists() && appendChecker != 1) {
 			System.out.println("저장 파일을 덮어쓰시겠습니까? 추가하시겠습니까? (덮어쓰기 / 추가)");
 			answer = scanner.nextLine();
 			if (!answer.equals("덮어쓰기") && !answer.equals("추가")) {
@@ -121,15 +115,16 @@ public class GradeCheck {
 		
 		try {
 			if (answer.equals("추가")) {
+				appendChecker = 1;
 				FileInputStream fis = new FileInputStream(saveFile);
 				ObjectInputStream in = new ObjectInputStream(fis);
 				int tempGradeCount = (int) in.readObject();
 				Map<Integer, Grade> tempGradeMap = (HashMap<Integer, Grade>) in.readObject();
 				Set<Integer> set = gradeMap.keySet();
+				gradeCount = gradeCount + tempGradeCount;
 				for (int i : set) {
-					tempGradeMap.put(tempGradeCount + i, gradeMap.get(i));
+					tempGradeMap.put(i + tempGradeCount , gradeMap.get(i));
 				}
-				gradeCount = tempGradeCount;
 				gradeMap = tempGradeMap;
 			}
 			fos = new FileOutputStream(saveFile);
