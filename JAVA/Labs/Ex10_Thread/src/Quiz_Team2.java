@@ -69,13 +69,6 @@ public class Quiz_Team2 {
         GuGuDan.isRight = false;
       }
     }
-    
-    try {
-      gugu.join();
-    } catch (InterruptedException e) {
-      // TODO Auto-generated catch block
-      e.printStackTrace();
-    }
 
     gameOver = true;
     System.out.println("게임 종료");
@@ -90,7 +83,7 @@ public class Quiz_Team2 {
         result++;
       }
     }
-    
+
     System.out.println("결과 : " + result + "점");
     System.out.println("최고 기록 21점");
   }
