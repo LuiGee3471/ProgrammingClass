@@ -71,6 +71,13 @@ public class Quiz_Team2 {
     }
 
     gameOver = true;
+    
+    try {
+      gugu.join();
+    } catch (Exception e) {
+      
+    }
+    
     System.out.println("게임 종료");
     System.out.println("풀었던 문제와 답");
     for (String s : GuGuDan.answers.keySet()) {
