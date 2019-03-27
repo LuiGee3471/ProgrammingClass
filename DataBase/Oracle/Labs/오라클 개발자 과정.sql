@@ -3564,3 +3564,29 @@ AND mgr IN (SELECT mgr
             ON e.deptno = d.deptno
             WHERE d.loc = 'DALLAS');             
 
+SELECT * FROM dmlemp;
+
+CREATE TABLE trans_A (
+  num NUMBER,
+  name varchar2(20));
+
+CREATE TABLE trans_B (
+  num NUMBER CONSTRAINT pk_trans_B_num PRIMARY KEY,
+  name varchar2(20));
+
+SELECT * FROM trans_A;
+SELECT * FROM trans_B;
+  
+SELECT * FROM dept;
+
+SELECT * FROM user_constraints WHERE table_name = 'DEPT';
+DROP TABLE student_grade;
+DROP TABLE department;
+
+CREATE TABLE department(
+  deptno NUMBER,
+  dname varchar2(20)
+);
+
+ALTER TABLE department
+ADD CONSTRAINTS pk_department_deptno PRIMARY KEY(deptno);
