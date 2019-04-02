@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Floating box</title>
+  <style type="text/css">
+    .floating-box {
+      float: right;
+      width: 150px;
+      height: 80px;
+      margin: 10px;
+      border: 3px solid red;
+    }
+
+    .not-floating {
+      width: 150px;
+      height: 80px;
+      margin: 10px;
+      border: 3px solid red;
+    }
+
+    .after-box {
+      clear: left;
+      border: 3px dotted blue;
+    }
+  </style>
+</head>
+
+<body>
+  <h3>using float</h3>
+  <div class="floating-box"></div>
+  <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
+  <div class="not-floating"></div>
+  <div class="floating-box"></div>
+  <div class="floating-box"></div>
+  <div class="floating-box">1-fb</div>
+  <div class="floating-box">2-fb</div>
+  <div class="floating-box">3-fb</div>
+  <div class="floating-box">4-fb</div>
+  <div class="after-box">Another Box</div>
+</body>
+
+</html>

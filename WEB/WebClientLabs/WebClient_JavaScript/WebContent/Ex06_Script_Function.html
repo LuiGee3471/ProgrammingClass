@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>내장함수 : 사용자 정의 함수</title>
+  <script>
+    // Java : public void print() {}
+    // Java : public String print() { return ""; }
+    // Java : public int print(int num) { return 100 + num; }
+
+    // JavaScript
+    // function 함수이름(param) {} >> void, String (X)
+    function callConfirm() { // 사용자 정의 함수
+      if (window.confirm("작업내용")) { // 내장 함수
+        // 확인(true) 취소(false)
+        alert("삭제합니다");
+      } else {
+        alert("취소합니다.");
+      }
+    }
+
+    function showPopUp() {
+      /*
+      https://www.w3schools.com/jsref/met_win_open.asp
+      Parameter Values 표 확인하기
+      window.open(URL, name, specs, replace)
+      ** specs 부분이 브라우저별로 적용 여부가 다름
+
+      window.open()
+      window.close() -> close the current window
+      window.open()
+      */
+      window.open("Ex06_PopUp.html", "zipcode", "width=200, height=200");
+    }
+
+    function myFunction() {
+      const myWindow = window.open("Ex06_PopUp.html", "zipcode", "width=200, height=200");
+      //myWindow : open되는 창
+      console.log(myWindow.document);
+      myWindow.document.write("<p>This is window</p>");
+    }
+
+    // Java : public String goUrlTime(String url)
+    function goUrlTime(url) { // 함수는 parameter 타입을 가지지 않는다.
+      window.setTimeout(`location.href="${url}"`, 3000);
+      // 페이지 이동
+      //location.href = "http://www.daum.net";
+      // setTimeout() 내장함수
+    }
+
+    // JavaScript return
+    function myFun(a, b) {
+      return a + b;
+    }
+
+    const result = myFun(100, 200);
+    console.log(result);
+
+    const changeColor = function () {
+      window.document.bgColor = "silver";
+      window.document.fgColor = "red";
+    }
+  </script>
+</head>
+
+<body>
+  <h3>내장함수, 사용자 정의 함수 사용하기</h3>
+  <button onclick="callConfirm()">함수 호출</button>
+  <br>
+  <input type="button" value="팝업창" onclick="showPopUp()">
+  <br>
+  <input type="button" value="팝업옵션" onclick="myFunction()">
+  <br>
+  <input type="button" value="주소 이동" onclick="goUrlTime('http://www.daum.net')">
+  <br>
+  <input type="button" value="색 변경" onclick="changeColor()">
+</body>
+
+</html>

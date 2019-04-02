@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>JavaScript</title>
+  <script>
+    /*
+    JavaScript 블럭 주석
+
+    JavaScript (언어: Web : 코드 해석(웹) : 라인 단위 해석)
+    JavaScript (객체 지향 언어 : 내부적으로 클래스 개념)
+
+    JavaScript 사용
+    1. HTML의 content, attribute를 변경하거나 삭제하거나 추가할 수 있다(동적으로)
+    2. CSS content 변경, 삭제, 추가(동적으로)
+    3. 유효성 검증(id 체크, 주민번호 검증)
+    4. 동적인 웹페이지 구성 가능
+    5. JavaScript 전 세계적으로 가장 많이 사용
+       (좀 더 편하게 쓸 수 없을까)
+      - JavaScript Framework
+      >> jquery.js, angular.js, node.js, react.js
+      >> 장점: 개발시간 단축, 유지보수
+      >> 단점 : 라이브러리에 종속 >> framework을 만들 수 있는 JavaScript 학습 필요
+    6. 문법
+      1. 대소문자 엄격하게 구분
+      2. 종결자 ; 사용
+      3. 타입, 연산자, 제어문 (cf) Java와 비슷
+    7. 사용법(CSS 동일 : common.css)
+      1. inline(태그 안쪽에 표현) >> <p onclick="alert()"></p>
+      2. internal >> <head><script><//script></head>
+      3. external >> common.js -> link
+    */
+    //internal
+    // Java : public void call() {}
+    function call() {
+      alert("internal");
+    }
+  </script>
+  <script src="Script/common.js"></script>
+</head>
+
+<body>
+  <h3>inline</h3>
+  <input type="button" value="inline" onclick="alert('inline')">
+
+  <h3>internal</h3>
+  <input type="button" value="internal" onclick="call()">
+
+  <h3>external</h3>
+  <input type="button" value="external" onclick="excall()">
+
+</body>
+
+</html>

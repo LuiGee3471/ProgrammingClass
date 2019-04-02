@@ -1,0 +1,30 @@
+{
+  "ecmaVersion": 5,
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "outline": {
+      
+    },
+    "complete_strings": {
+      
+    },
+    "chrome-extension": {
+      
+    },
+    "chrome-apps": {
+      
+    },
+    "browser-extension": {
+      
+    },
+    "bootstrap": {
+      
+    }
+  },
+  "libs": [
+    "browser",
+    "jquery"
+  ]
+}
