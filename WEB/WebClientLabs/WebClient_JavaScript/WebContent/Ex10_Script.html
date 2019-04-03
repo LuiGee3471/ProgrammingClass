@@ -1,0 +1,106 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>JavaScript 문법(문자열, 숫자)</title>
+  <script>
+    const str = "10 + 20 + 30";
+    document.write(str + "<br>");
+
+    // 1. eval()
+    // 문자형 수식을 계산
+    document.write("eval() : " + eval(str) + "<br>");
+
+    // 2. isNaN() => Not a Number -> 너 숫자 아니니 -> true(문자), false(숫자)
+    document.write(isNaN("12345") + "<br>"); // false
+    document.write(isNaN("12345A") + "<br>"); // true
+    document.write(isNaN("대한민국") + "<br>"); // true
+    document.write(isNaN('12345') + "<br>"); // false
+
+    // 문자열 함수 학습
+    // https://www.w3schools.com/js/js_string_methods.asp
+    /*
+    Method	Description
+    Number()	Returns a number, converted from its argument.
+    parseFloat()	Parses its argument and returns a floating point number
+    parseInt()	Parses its argument and returns an integer
+    */
+    var i = "100";
+    var j = "200";
+    document.write("결합 : " + (i + j)); // Java, JavaScript : + >> 산술, 결합
+    document.write("<br>숫자변환 : " + (Number(i) + Number(j)));
+
+    // 이벤트
+    // https://www.w3schools.com/js/js_events.asp
+    /*
+    Event	       Description
+    onchange	   An HTML element has been changed
+    onclick	     The user clicks an HTML element
+    onmouseover	 The user moves the mouse over an HTML element
+    onmouseout	 The user moves the mouse away from an HTML element
+    onkeydown	   The user pushes a keyboard key
+    onload	     The browser has finished loading the page
+
+
+    this >> 버튼 자기 자신
+    <button onclick="this.innerHTML=Date()">The time is</button>
+
+    onblur="myFunction()"
+    function myFunction() {
+      const jumin = document.myForm.jumin1;
+      if (isNaN(jumin.value)) { // 숫자가 아닌 값
+        alert("숫자 입력해");
+        jumin.focus();
+        jumin.select();
+      }
+    }
+    */
+    function focusFunction() {
+      document.getElementById("myInput").style.background = "yellow";
+    }
+
+    function blurFunction() {
+      document.getElementById("myInput").style.background = "red";
+    }
+
+    function selectTag() {
+      // onchange >> select, input 등의 값이 변할 때
+      alert(document.myForm.sel.value);
+    }
+
+    // POINT
+    function changeColor(obj) {
+      console.log(obj);
+      obj.style.backgroundColor = "gold";
+    }
+
+    function changeColor2(obj) {
+      console.log(obj);
+      obj.style.backgroundColor = "white";
+    }
+  </script>
+</head>
+
+<body onload="alert('finished loading')">
+  <!-- 
+    onfocus : 포커스가 들어오면
+    onblur : 포커스가 나가면
+   -->
+  <form action="#" name="myForm">
+    <input type="text" name="myInput" id="myInput" onblur="blurFunction()" onfocus="focusFunction()">
+    <select name="sel" onchange="selectTag()">
+      <option value="A">AA</option>
+      <option value="B">BB</option>
+      <option value="C">CC</option>
+      <option value="D">DD</option>
+    </select>
+    <br>
+    <input type="text" onmouseover="changeColor(this)" onmouseout="changeColor2(this)">
+    <br>
+    <input type="text" onkeypress="alert('키보드 입력')">
+    <br>
+    <input type="text" value="1000A" name="money">
+  </form>
+</body>
+
+</html>

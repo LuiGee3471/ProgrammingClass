@@ -1,7 +1,6 @@
 const replayBtn = document.querySelector("#replay");
 
-function replaySound(event) {
-  const btn = event.target;
+function replaySound() {
   const audio = document.querySelector("audio");
   if (audio === null) {
     return;

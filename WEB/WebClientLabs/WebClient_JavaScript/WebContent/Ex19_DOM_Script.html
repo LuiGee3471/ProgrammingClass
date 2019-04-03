@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script>
+      //onload 이벤트 발생 시점 : body 태그 안에 있는 모든 요소가 브라우저에 로딩되고 난 후
+      //<body onload=call()>
+      //window.onload = call()
+      window.onload = function() {
+        // 함수 이름이 없다(익명 함수) : 재활용을 하지 않음
+        // page 요소가 로딩된 후에 함수가 자동 실행되게 하겠다
+        // body 안쪽 모든 요소를 제어할 수 있다
+        let out = "";
+        out += "<ul>";
+        out += "<li>javascript</li>";
+        out += "<li>jquery</li>";
+        out += "<li>Oracle</li>";
+        out += "</ul>";
+
+        document.body.innerHTML = out;
+
+        const header = document.createElement("h1");
+        // <h1></h1>
+        const textnode = document.createTextNode("hello");
+
+        header.appendChild(textnode);
+        //<h1>hello</h1>
+
+        document.body.appendChild(header);
+
+        // img 태그 생성하고 이미지 src 속성을 만들고 body에 append
+        const img = document.createElement("img");
+        // const src = document.createAttribute("src");
+        // src.value = "images/3.jpg";
+        // img.setAttributeNode(src);
+        img.setAttribute("src", "images/3.jpg");
+        img.setAttribute("width", "100");
+        img.setAttribute("width", "100");
+
+        document.body.appendChild(img);
+      };
+    </script>
+  </head>
+  <body>
+    HELLO WORLD
+  </body>
+</html>

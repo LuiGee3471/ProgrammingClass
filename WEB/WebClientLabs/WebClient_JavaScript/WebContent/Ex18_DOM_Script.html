@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script>
+      /*
+      JavaScript can change all the HTML elements in the page
+      JavaScript can change all the HTML attributes in the page
+      JavaScript can change all the CSS styles in the page
+      JavaScript can remove existing HTML elements and attributes
+      JavaScript can add new HTML elements and attributes
+      JavaScript can react to all existing HTML events in the page
+      JavaScript can create new HTML events in the page
+      */
+    </script>
+  </head>
+  <body>
+    <div id="demo"></div>
+    <div id="demo">
+      두 번째 요소(계층 트리에서 첫번째 element id="demo");
+    </div>
+  </body>
+  <script>
+    const element_div = document.getElementById("demo");
+    console.log(element_div);
+    element_div.innerHTML = "<b>Hello World</b>";
+  </script>
+</html>

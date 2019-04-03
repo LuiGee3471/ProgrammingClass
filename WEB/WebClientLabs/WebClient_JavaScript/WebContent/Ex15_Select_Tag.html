@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <script>
+      function evtproductor(form) {
+        console.log(form);
+        console.log(form.productor.value); // option 태그 value 속성값
+        console.log("index : " + form.productor.selectedIndex); // POINT
+        // select 태그 안에 option은 내부에서 배열로 관리한다
+        // console.log(form.productor.options[0].value);
+        // console.log(form.productor.options[0].text);
+        console.log(form.productor.options[form.productor.selectedIndex].value);
+        console.log(form.productor.options[form.productor.selectedIndex].text);
+
+        const index = form.productor.selectedIndex;
+        const text = form.productor.options[index].text;
+        const val = form.productor.options[index].value;
+
+        if (index === 0) {
+          form.valProductor.value = "";
+          form.txtProductor.value = "";
+        } else {
+          form.valProductor.value = val;
+          form.txtProductor.value = text;
+        }
+      }
+
+      function evtBrand() {
+        const selectBrand = document.getElementsByName("brand")[0];
+        const valBrand = document.getElementsByName("valbrand");
+        const txtBrand = document.getElementsByName("txtbrand");
+
+        const index = selectBrand.selectedIndex;
+        const text = selectBrand.options[index].text;
+        const val = selectBrand.options[index].value;
+
+        if (index === 0) {
+          valBrand.value = "";
+          txtBrand.value = "";
+        } else {
+          valBrand.value = val;
+          txtBrand.value = text;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    모델별 최저가 검색<br />
+    <form name="frmdata">
+      <select
+        style="width: 200px"
+        name="productor"
+        onchange="evtproductor(this.form)"
+      >
+        <option value="A000" selected>제조사</option>
+        <option value="A001">삼성전자</option>
+        <option value="A002">LG전자</option>
+        <option value="A003">Apple</option>
+        <option value="A004">Dell</option>
+      </select>
+      <input type="text" name="valProductor" size="10" />
+      <input type="text" name="txtProductor" size="10" />
+      <br />
+
+      <select style="width: 200px" name="brand" onchange="evtBrand()">
+        <option value="B000" SELECTED>브랜드</option>
+        <option value="B001">센스</option>
+        <option value="B002">X-Note</option>
+        <option value="B003">MAC</option>
+        <option value="B004">VAIO</option>
+      </select>
+      <input type="text" name="valBrand" size="10" />
+      <input type="text" name="txtBrand" size="10" />
+    </form>
+  </body>
+</html>

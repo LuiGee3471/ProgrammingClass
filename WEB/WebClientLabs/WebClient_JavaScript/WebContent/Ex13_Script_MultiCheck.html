@@ -1,0 +1,74 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script>
+      let checkflag = "false";
+
+      function checkForm() {
+        const list = document.myForm.list; // 모든 element를 갖고와서 배열이 된다
+        console.log(list);
+        console.log(list.length);
+
+        if (checkflag === "false") {
+          for (let index in list) {
+            list[index].checked = true;
+            // 기존 input 태그에 checked 속성을 추가
+          }
+          checkflag = "true";
+          return "[선택해제하기]";
+        } else {
+          for (let index in list) {
+            list[index].checked = false;
+            // 기존 input 태그에 checked 속성을 추가
+          }
+          checkflag = "false";
+          return "[전체선택]";
+        }
+      }
+      ///////////////////////////////////////
+      let checkflag2 = "false";
+
+      function checkForm2(list) {
+        if (checkflag === "false") {
+          for (let index in list) {
+            list[index].checked = true;
+            // 기존 input 태그에 checked 속성을 추가
+          }
+          checkflag = "true";
+          return "[선택해제하기]";
+        } else {
+          for (let index in list) {
+            list[index].checked = false;
+            // 기존 input 태그에 checked 속성을 추가
+          }
+          checkflag = "false";
+          return "[전체선택]";
+        }
+      }
+    </script>
+  </head>
+
+  <body>
+    <form action="#" name="myForm">
+      좋아하는 과목은<br />
+      <input type="checkbox" name="list" id="java" />JAVA <br />
+      <input type="checkbox" name="list" id="oracle" />ORACLE <br />
+      <input type="checkbox" name="list" id="html" />HTML <br />
+      <input type="checkbox" name="list" id="css" />CSS <br />
+      <input type="checkbox" name="list" id="script" />SCRIPT <br />
+      <input
+        type="button"
+        value="[전체선택]"
+        onclick="this.value = checkForm()"
+      />
+
+      <input
+        type="button"
+        value="[전체선택]"
+        onclick="this.value = checkForm2(this.form.list)"
+      />
+      <!-- this.form.list : this = document -->
+    </form>
+  </body>
+</html>

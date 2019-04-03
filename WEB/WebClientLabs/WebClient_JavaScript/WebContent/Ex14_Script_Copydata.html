@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+  </head>
+  <body>
+    <form>
+      <fieldset>
+        <legend>주문정보</legend>
+        이름:<input type="text" name="username" /><br />
+        <input type="checkbox" name="checkmail" />배송정보 Email수신<br />
+        <hr />
+        <input type="checkbox" name="copy" onclick="copyInfo(this.checked)" />
+        주문자 정보와 배송지 정보 동일
+      </fieldset>
+      <hr />
+      <fieldset>
+        <legend>배송지 정보</legend>
+        이름:<input type="text" name="copyname" /><br />
+        <input type="checkbox" name="copymail" />배송정보 Email수신<br />
+      </fieldset>
+    </form>
+    <script>
+      const username = document.getElementsByName("username")[0];
+      const checkMail = document.getElementsByName("checkmail")[0];
+      const copyname = document.getElementsByName("copyname")[0];
+      const copyMail = document.getElementsByName("copymail")[0];
+
+      function copyInfo(checked) {
+        const name = username.value;
+        const mailChecked = checkMail.checked;
+
+        if (checked) {
+          copyname.value = name;
+          copyMail.checked = mailChecked;
+        }
+      }
+    </script>
+  </body>
+</html>
