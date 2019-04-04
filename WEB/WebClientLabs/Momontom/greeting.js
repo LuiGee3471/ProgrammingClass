@@ -9,6 +9,12 @@ function saveName(text) {
   localStorage.setItem(USER_LS, text);
 }
 
+function paintGreeting(text) {
+  form.classList.remove(SHOWING_CN);
+  greeting.classList.add(SHOWING_CN);
+  greeting.innerText = `Hello ${text}`;
+}
+
 function handleSubmit(event) {
   event.preventDefault();
   const currentValue = input.value;
@@ -19,12 +25,6 @@ function handleSubmit(event) {
 function askForName() {
   form.classList.add(SHOWING_CN);
   form.addEventListener("submit", handleSubmit);
-}
-
-function paintGreeting(text) {
-  form.classList.remove(SHOWING_CN);
-  greeting.classList.add(SHOWING_CN);
-  greeting.innerText = `Hello ${text}`;
 }
 
 function loadName() {

@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script>
+      window.onload = function() {
+        var meNode = document.getElementById("me");
+        meNode.style.backgroundColor = "yellow";
+
+        var parentNode = meNode.parentNode; // body
+        parentNode.style.backgroundColor = "skyblue";
+
+        var grandNode = parentNode.parentNode; // html
+        grandNode.style.backgroundColor = "green";
+
+        var my = document.getElementById("myChild");
+        console.log(my);
+        console.log(my.firstChild);
+        console.log(my.firstElementChild);
+        console.log(my.firstElementChild.nextElementSibling);
+        console.log(my.firstChild.nodeName);
+        console.log(my.firstChild.innerText); // value 속성이 없는 태그
+        console.log(my.firstChild.nextSibling);
+        console.log(my.childNodes.length);
+        console.log(my.lastChild.innerText);
+      };
+    </script>
+  </head>
+  <body>
+    <div>A</div>
+    <div>B</div>
+    <div id="me">C</div>
+    <div>D</div>
+    <div>E</div>
+    <ul id="myChild">
+      <li>AA</li>
+      <li>BB</li>
+      <li>CC</li>
+    </ul>
+  </body>
+</html>

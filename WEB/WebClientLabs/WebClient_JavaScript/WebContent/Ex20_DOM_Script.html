@@ -1,0 +1,35 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script>
+      window.onload = function() {
+        const pele = document.createElement("p");
+        const hrele = document.createElement("hr");
+        const h3ele = document.createElement("h3");
+        const textnode = document.createTextNode("hello world");
+        const divele = document.createElement("div");
+        const textnode2 = document.createTextNode("HI HI HI");
+
+        // <hr title="수평선">
+        hrele.setAttribute("title", "수평선");
+
+        // <h3>hello world</h3>
+        h3ele.appendChild(textnode);
+
+        // <div>HI HI HI</div>
+        divele.appendChild(textnode2);
+
+        // body 요소에 추가
+        document.body.appendChild(pele).appendChild(divele);
+        // <body><p><div>HI HI HI</div></p></body>
+
+        document.body.appendChild(hrele);
+        // <body><p><div>HI HI HI</div></p> <hr title="수평선></body>
+
+        document.body.appendChild(h3ele);
+      };
+    </script>
+  </head>
+  <body></body>
+</html>

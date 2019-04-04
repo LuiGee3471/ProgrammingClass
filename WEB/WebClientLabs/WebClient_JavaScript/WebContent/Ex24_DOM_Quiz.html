@@ -1,0 +1,68 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <style>
+      a {
+        float: left;
+        text-decoration: none;
+        padding: 20px;
+        padding-top: 55px;
+        color: black;
+      }
+
+      a:visited {
+        color: black;
+      }
+
+      img {
+        padding: 2px;
+        border: 2px solid black;
+        float: left;
+      }
+    </style>
+    <script>
+      window.onload = function() {
+        var myPhotos = [
+          "images/1.jpg",
+          "images/2.jpg",
+          "images/3.jpg",
+          "images/4.jpg"
+        ];
+
+        var index = 0;
+
+        var img = document.getElementById("imgs");
+        var prvAnchor = document.getElementById("prv");
+        var nxtAnchor = document.getElementById("nxt");
+
+        prvAnchor.onclick = function() {
+          index--;
+          if (index === -1) {
+            index = 3;
+          }
+          var previousImage = myPhotos[index];
+          img.setAttribute("src", previousImage);
+
+          // console.log(index);
+        };
+        nxtAnchor.onclick = function() {
+          index++;
+          if (index === 4) {
+            index = 0;
+          }
+          var nextImage = myPhotos[index];
+          img.setAttribute("src", nextImage);
+
+          // console.log(index);
+        };
+      };
+    </script>
+  </head>
+  <body>
+    <h3>DOM 슬라이드</h3>
+    <a href="#" id="prv"><h1>&lt;</h1></a>
+    <img id="imgs" src="images/1.jpg" alt="사진" width="200" height="200" />
+    <a href="#" id="nxt"><h1>&gt;</h1></a>
+  </body>
+</html>
