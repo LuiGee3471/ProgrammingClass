@@ -1,28 +1,21 @@
-const toDoForm = document.querySelector(".js-toDoForm"),
-  toDoInput = toDoForm.querySelector("input"),
-  toDoList = document.querySelector(".js-toDoList");
+const toDoForm = document.querySelector(".js-toDoForm");
+const toDoInput = toDoForm.querySelector("input");
+const toDoList = document.querySelector(".js-toDoList");
 
 const TODOS_LS = "toDos";
 
-function filterFn(toDo) {
-  return toDo.id === 1;
-}
-
 let toDos = [];
 
+function saveToDos() {
+  localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
+}
 function deleteToDo(event) {
   const btn = event.target;
   const liToRemove = btn.parentNode;
   toDoList.removeChild(liToRemove);
-  const cleanToDos = toDos.filter(function(toDo) {
-    return toDo.id !== parseInt(liToRemove.id);
-  });
+  const cleanToDos = toDos.filter(toDo => toDo.id !== Number(liToRemove.id));
   toDos = cleanToDos;
   saveToDos();
-}
-
-function saveToDos() {
-  localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
 
 function paintToDo(text) {
@@ -38,8 +31,8 @@ function paintToDo(text) {
   li.id = newId;
   toDoList.appendChild(li);
   const toDoObj = {
-    text: text,
-    id: newId
+    text,
+    id: newId,
   };
   toDos.push(toDoObj);
   saveToDos();
@@ -56,7 +49,7 @@ function loadToDos() {
   const loadedToDos = localStorage.getItem(TODOS_LS);
   if (loadedToDos !== null) {
     const parsedToDos = JSON.parse(loadedToDos);
-    parsedToDos.forEach(function(toDo) {
+    parsedToDos.forEach((toDo) => {
       paintToDo(toDo.text);
     });
   }

@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script>
+      window.onload = function() {
+        var btn = document.getElementById("myBtn");
+        btn.onclick = function(event) {
+          // 이벤트가 발생되면 이벤트의 정보를 담고 있는 객체 생성
+          console.log(event.type);
+          console.log(event.target);
+          console.log(event.currentTarget);
+          console.log(event.x);
+        };
+        var btn2 = document.getElementById("myBtn2");
+        var handler = function(event) {
+          switch (event.type) {
+            case "click":
+              break;
+            case "mouseover":
+              event.target.style.backgroundColor = "red";
+              break;
+            case "mouseout":
+              event.target.style.backgroundColor = "";
+              break;
+          }
+        };
+
+        btn2.onclick = handler;
+        btn2.onmouseover = handler;
+        btn2.onmouseout = handler;
+      };
+    </script>
+  </head>
+
+  <body>
+    <button id="myBtn"><span>눌러봐</span></button>
+    <button id="myBtn2"><span>눌러봐</span></button>
+  </body>
+</html>

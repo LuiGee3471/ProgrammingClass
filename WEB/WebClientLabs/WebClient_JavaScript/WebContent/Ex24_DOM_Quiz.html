@@ -17,7 +17,7 @@
 
       img {
         padding: 2px;
-        border: 2px solid black;
+        border: 2px solid;
         float: left;
       }
     </style>
@@ -27,7 +27,7 @@
           "images/1.jpg",
           "images/2.jpg",
           "images/3.jpg",
-          "images/4.jpg"
+          "images/4.jpg",
         ];
 
         var index = 0;
@@ -42,7 +42,7 @@
             index = 3;
           }
           var previousImage = myPhotos[index];
-          img.setAttribute("src", previousImage);
+          img.src = previousImage;
 
           // console.log(index);
         };
@@ -52,7 +52,7 @@
             index = 0;
           }
           var nextImage = myPhotos[index];
-          img.setAttribute("src", nextImage);
+          img.src = nextImage;
 
           // console.log(index);
         };
