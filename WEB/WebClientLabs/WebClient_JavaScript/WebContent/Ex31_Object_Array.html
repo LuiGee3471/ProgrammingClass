@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script>
+      // 1. 배열 : []
+      // 2. 객체 : {}
+
+      // 객체와 배열 혼합
+      var students = [];
+      console.log(students);
+
+      // 배열이 객체를 가질 수 있다
+      students.push({ 이름: "홍길동", 국어: 80, 영어: 60 });
+      students.push({ 이름: "아무개", 국어: 100, 영어: 50 });
+      students.push({ 이름: "유관순", 국어: 100, 영어: 100 });
+
+      for (var index in students) {
+        students[index].getSum = function() {
+          return this.국어 + this.영어;
+        };
+        students[index].getAvg = function() {
+          return this.국어 + this.영어 / 2;
+        };
+      }
+
+      students.forEach((student) => {
+        console.log(student.국어 + student.영어);
+      });
+
+      // students 배열에 담겨있는 학생의 이름, 총점, 평균을 출력해보세요
+      students.forEach((student) => {
+        console.log(
+          `이름 : ${student.이름} 
+           총점 : ${student.getSum()} 
+           평균 : ${student.getAvg()} <br>`
+        );
+      });
+
+      for (let index in students) {
+        document.write(
+          `이름 : ${students[index].이름} 
+           총점 : ${students[index].getSum()} 
+           평균 : ${students[index].getAvg()} <br>`
+        );
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
