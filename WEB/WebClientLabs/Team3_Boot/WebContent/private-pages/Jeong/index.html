@@ -1,0 +1,452 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <script type="text/javascript">
+      (function() {
+        function k(a, b, c) {
+          if (a.addEventListener) {
+            a.addEventListener(b, c, false);
+          } else {
+            a.attachEvent && a.attachEvent("on" + b, c);
+          }
+        }
+        function g(a) {
+          if (typeof window.onload != "function") {
+            window.onload = a;
+          } else {
+            var b = window.onload;
+            window.onload = function() {
+              b();
+              a();
+            };
+          }
+        }
+        function h() {
+          var a = {};
+          for (type in {
+            Top: "",
+            Left: "",
+          }) {
+            var b = type == "Top" ? "Y" : "X";
+            if (typeof window["page" + b + "Offset"] != "undefined") {
+              a[type.toLowerCase()] = window["page" + b + "Offset"];
+            } else {
+              b = document.documentElement.clientHeight
+                ? document.documentElement
+                : document.body;
+              a[type.toLowerCase()] = b["scroll" + type];
+            }
+          }
+          return a;
+        }
+        function l() {
+          var a = document.body,
+            b;
+          if (window.innerHeight) {
+            b = window.innerHeight;
+          } else if (a.parentElement.clientHeight) {
+            b = a.parentElement.clientHeight;
+          } else if (a && a.clientHeight) {
+            b = a.clientHeight;
+          }
+          return b;
+        }
+        function i(a) {
+          this.parent = document.body;
+          this.createEl(this.parent, a);
+          this.size = Math.random() * 4 + 4;
+          this.el.style.width = Math.round(this.size) + "px";
+          this.el.style.height = Math.round(this.size) + "px";
+          this.maxLeft = document.body.offsetWidth - this.size;
+          this.maxTop = document.body.offsetHeight - this.size;
+          this.left = Math.random() * this.maxLeft;
+          this.top = h().top + 1;
+          this.angle = 1.4 + 0.2 * Math.random();
+          this.minAngle = 1.4;
+          this.maxAngle = 1.6;
+          this.angleDelta = 0.01 * Math.random();
+          this.speed = 4 + Math.random();
+        }
+        var j = false;
+        g(function() {
+          j = true;
+        });
+        var f = true;
+        window.createSnow = function(a, b) {
+          if (j) {
+            var c = [],
+              m = setInterval(function() {
+                f &&
+                  b > c.length &&
+                  Math.random() < b * 0.0025 &&
+                  c.push(new i(a));
+                !f && !c.length && clearInterval(m);
+                for (var e = h().top, n = l(), d = c.length - 1; d >= 0; d--)
+                  if (c[d])
+                    if (c[d].top < e || c[d].top + c[d].size + 1 > e + n) {
+                      c[d].remove();
+                      c[d] = null;
+                      c.splice(d, 1);
+                    } else {
+                      c[d].move();
+                      c[d].draw();
+                    }
+              }, 40);
+            k(window, "scroll", function() {
+              for (var e = c.length - 1; e >= 0; e--) {
+                c[e].draw();
+              }
+            });
+          } else {
+            g(function() {
+              createSnow(a, b);
+            });
+          }
+        };
+        window.removeSnow = function() {
+          f = false;
+        };
+        i.prototype = {
+          createEl: function(a, b) {
+            this.el = document.createElement("img");
+            this.el.setAttribute(
+              "src",
+              b + "images/snow" + Math.floor(Math.random() * 4) + ".gif"
+            );
+            this.el.style.position = "absolute";
+            this.el.style.display = "block";
+            this.el.style.zIndex = "99999";
+            this.parent.appendChild(this.el);
+          },
+          move: function() {
+            if (this.angle < this.minAngle || this.angle > this.maxAngle) {
+              this.angleDelta = -this.angleDelta;
+            }
+            this.angle += this.angleDelta;
+            this.left += this.speed * Math.cos(this.angle * Math.PI);
+            this.top -= this.speed * Math.sin(this.angle * Math.PI);
+            if (this.left < 0) {
+              this.left = this.maxLeft;
+            } else if (this.left > this.maxLeft) {
+              this.left = 0;
+            }
+          },
+          draw: function() {
+            this.el.style.top = Math.round(this.top) + "px";
+            this.el.style.left = Math.round(this.left) + "px";
+          },
+          remove: function() {
+            this.parent.removeChild(this.el);
+            this.parent = this.el = null;
+          },
+        };
+      })();
+    </script>
+    <script>
+      createSnow("./", 2000);
+      //------------ ./�� �̹��� ���, 1000�� �� ����(���ڰ� ũ�� Ŭ���� ������ �����ϴ�.)
+    </script>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <style type="text/css">
+      .borderimg {
+        border: 10px solid transparent;
+        padding: 15px;
+        border-image: url(images/4.jpg) 30 stretch;
+      }
+
+      body {
+        background-color: gray;
+        overflow: hidden;
+      }
+
+      .topnav {
+        overflow: hidden;
+        background-color: black;
+      }
+
+      .topnav a {
+        float: left;
+        display: block;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+      }
+
+      .sidelineleft {
+        border: 3px solid;
+        float: left;
+        padding: 100px;
+        border: 10px solid transparent;
+        border-image: url(images/5.png) 30 stretch;
+      }
+
+      .sidelineright {
+        border: 3px solid;
+        float: right;
+        padding: 100px;
+        border: 10px solid transparent;
+        border-image: url(images/5.png) 30 stretch;
+      }
+
+      .footer {
+        background-color: lavenderblush;
+        clear: both;
+        padding: 50px;
+        height: 100px;
+      }
+
+      div.gallery {
+        margin: 5px;
+        border: 1px solid #ccc;
+        float: left;
+        width: 180px;
+      }
+
+      div.gallery:hover {
+        border: 1px solid #777;
+      }
+
+      div.gallery img {
+        width: 100%;
+        height: auto;
+      }
+
+      div.desc {
+        padding: 15px;
+        text-align: center;
+      }
+
+      h1 {
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div
+          class="col-sm-12"
+          style="background-color:lavenderblush; padding:50px; "
+        >
+          <h1 style="text-align:center">자기소개서</h1>
+        </div>
+      </div>
+
+      <div class="topnav">
+        <a href="../Kang/index.html">강기훈</a>
+        <a href="../Kwak/index.html">곽호원</a>
+        <a href="../Yoon/index.html">윤종석</a>
+        <a href="#" style="float:right">우힛</a>
+      </div>
+
+      <input type="button" value="누르지마세요" id="btn" />
+      <button
+        type="button"
+        class="btn btn-warning"
+        data-toggle="collapse"
+        data-target="#demo"
+      >
+        클릭해보실?!
+      </button>
+      <div id="demo" class="collapse" style="both:clear">
+        <h1>사진을 클릭하면 우리조의 별명을 볼 수 있을껄 ?!!!</h1>
+      </div>
+
+      <div class="sidelineleft">
+        <div class="gallery">
+          <a target="_blank">
+            <img
+              src="images/1.png"
+              alt="Cinque Terre"
+              width="600"
+              height="400"
+              data-toggle="modal"
+              data-target="#myModal"
+            />
+          </a>
+          <div class="desc text-danger">강기훈</div>
+        </div>
+
+        <div class="gallery">
+          <a target="_blank">
+            <img
+              src="images/1.png"
+              alt="Forest"
+              width="600"
+              height="400"
+              data-toggle="modal"
+              data-target="#myModal2"
+            />
+          </a>
+          <div class="desc text-primary">곽호원</div>
+        </div>
+      </div>
+
+      <div class="sidelineright">
+        <div class="gallery">
+          <a target="_blank">
+            <img
+              src="images/1.png"
+              alt="Northern Lights"
+              width="600"
+              height="400"
+              data-toggle="modal"
+              data-target="#myModal3"
+            />
+          </a>
+          <div class="desc text-success">윤종석</div>
+        </div>
+
+        <div class="gallery">
+          <a target="_blank">
+            <img
+              src="images/1.png"
+              alt="Mountains"
+              width="600"
+              height="400"
+              data-toggle="modal"
+              data-target="#myModal4"
+            />
+          </a>
+          <div class="desc text-info">정성윤</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">강기훈 별명</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <h1>뒷통수</h1>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal2">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">곽호원 별명</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <h1>뒷통수2</h1>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal3">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">윤종석 별명</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <h1>우리팀의 에이스</h1>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Modal -->
+    <div class="modal" id="myModal4">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">정성윤 별명</h4>
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+          </div>
+
+          <!-- Modal body -->
+          <div class="modal-body">
+            <h1>`ㅁ`</h1>
+          </div>
+
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script type="text/javascript">
+    document.getElementById("btn").onclick = function() {
+      for (var i = 1; i <= 5; i++) {
+        alert("함정카드발동" + [i]);
+      }
+    };
+  </script>
+</html>
