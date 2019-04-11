@@ -40,7 +40,7 @@ class App extends Component {
   // Update : componentWillReceiveProps() -> shouldComponentUpdate() -> componentWillUpdate() -> render() -> componentDidUpdate()
 
   componentWillMount() {
-    // API request
+    // API request etc.
     console.log("will mount");
   }
 

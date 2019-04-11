@@ -1,0 +1,269 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Title</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <style>
+      .card {
+        width: 400px;
+      }
+      .picture {
+        margin-left: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="header container-fluid text-center text-white bg-primary">
+      <h1 class="display-4">Team 3</h1>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-1 col-md-1">&nbsp;</div>
+      <div class="picture col-sm-11 col-md-7">
+        <div class="row">
+          <div class="card-deck">
+            <div
+              class="card border-light text-center"
+              style="max-width: 16rem;"
+            >
+              <div class="card-body">
+                <img
+                  src="images/team/1.jpg"
+                  class="card-img-top rounded-circle"
+                  alt=""
+                />
+                <h4 class="card-title">강기훈</h4>
+                <p>가위바위보 챔피언</p>
+                <a
+                  href="#"
+                  class="btn btn-info stretched-link"
+                  data-toggle="modal"
+                  data-target="#modalKang"
+                  >자세히 보기</a
+                >
+              </div>
+            </div>
+            <div
+              class="card border-light text-center"
+              style="max-width: 16rem;"
+            >
+              <div class="card-body">
+                <img
+                  src="images/team/3.jpg"
+                  class="card-img-top rounded-circle"
+                  alt=""
+                />
+                <h4 class="card-title">곽호원</h4>
+                <p>공부 챔피언</p>
+                <a
+                  href="#"
+                  class="btn btn-info stretched-link"
+                  data-toggle="modal"
+                  data-target="#modalKwak"
+                  >자세히 보기</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="card-deck">
+            <div
+              class="card border-light text-center"
+              style="max-width: 16rem;"
+            >
+              <div class="card-body">
+                <img
+                  src="images/team/4.png"
+                  class="card-img-top rounded-circle"
+                  alt=""
+                />
+                <h4 class="card-title">윤종석</h4>
+                <p>챔피언</p>
+                <a
+                  href="#"
+                  class="btn btn-info stretched-link"
+                  data-toggle="modal"
+                  data-target="#modalYoon"
+                  >자세히 보기</a
+                >
+              </div>
+            </div>
+            <div
+              class="card border-light text-center"
+              style="max-width: 16rem;"
+            >
+              <div class="card-body">
+                <img
+                  src="images/team/2.jpg"
+                  class="card-img-top rounded-circle"
+                  alt=""
+                />
+                <h4 class="card-title">정성윤</h4>
+                <p>귀가 챔피언</p>
+                <a
+                  href="#"
+                  class="btn btn-info stretched-link"
+                  data-toggle="modal"
+                  data-target="#modalJeong"
+                  >자세히 보기</a
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="list-group">
+          <a href="" class="list-group-item active">첫 화면</a>
+          <a href="" class="list-group-item list-group-item-action"
+            ><strong>회원가입 페이지</strong></a
+          >
+          <a
+            href="../../sign-up/musinsa/signup.html"
+            class="list-group-item list-group-item-action"
+            >- 무신사</a
+          >
+          <a
+            href="../../sign-up/github/signup.html"
+            class="list-group-item list-group-item-action"
+            >- 깃허브</a
+          >
+          <a href="" class="list-group-item list-group-item-action"
+            ><strong>작업물</strong></a
+          >
+          <a
+            href="http://localhost:8090/Media/media.html"
+            class="list-group-item list-group-item-action"
+          >
+            - 동물 소리 맞추기</a
+          >
+          <a href="" class="list-group-item list-group-item-action"
+            ><strong>다른 홈페이지</strong></a
+          >
+          <a
+            href="../Kang/index.html"
+            class="list-group-item list-group-item-action"
+            >- 강기훈</a
+          >
+          <a
+            href="../Kwak/index.html"
+            class="list-group-item list-group-item-action"
+            >- 곽호원</a
+          >
+          <a
+            href="../Jeong/index.html"
+            class="list-group-item list-group-item-action"
+            >- 정성윤</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="footer container-fluid text-light bg-primary">
+      <p class="font-weight-light"><small>&copy;2019 Bitcamp Team 3</small></p>
+    </div>
+
+    <!-- Modal 1 -->
+    <div class="modal fade text-center" id="modalKang">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header mx-auto d-block">
+            <img
+              src="images/team/1.jpg"
+              class="rounded-circle img-fluid"
+              alt=""
+            />
+          </div>
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h5>조장</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal fade text-center" id="modalKwak">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header mx-auto d-block">
+            <img
+              src="images/team/3.jpg"
+              class="rounded-circle img-fluid"
+              alt=""
+            />
+          </div>
+
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h5>비겁한 공부맨</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 3 -->
+    <div class="modal fade text-center" id="modalYoon">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header mx-auto d-block">
+            <img
+              src="images/team/4.png"
+              class="rounded-circle img-fluid"
+              alt=""
+            />
+          </div>
+
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h5>나</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal 4 -->
+    <div class="modal fade text-center" id="modalJeong">
+      <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+          <div class="modal-header mx-auto d-block">
+            <img
+              src="images/team/2.jpg"
+              class="rounded-circle img-fluid"
+              alt=""
+            />
+          </div>
+
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal">
+              &times;
+            </button>
+            <h5>갱스터</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

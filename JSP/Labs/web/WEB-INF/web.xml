@@ -3,6 +3,10 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
+    <!-- http://localhost:8090/WebJSP/ -->
+    <welcome-file-list>
+        <welcome-file>index.html</welcome-file>
+    </welcome-file-list>
     <display-name>Apache-Axis</display-name>
     <servlet>
         <display-name>Apache-Axis Servlet</display-name>
@@ -49,4 +53,33 @@
         <extension>wsdl</extension>
         <mime-type>text/xml</mime-type>
     </mime-mapping>
+    <context-param>
+        <description>기본적인 설명을 하자면...</description>
+        <param-name>email</param-name>
+        <param-value>webmaster@bit.or.kr</param-value>
+    </context-param>
+    <context-param>
+        <description>파일 저장 경로</description>
+        <param-name>Filepath</param-name>
+        <param-value>C:\Web\Download</param-value>
+    </context-param>
+    <!--
+    context-param으로 만든 변수는 각 페이지에서 어떻게 가져다 쓸까
+    >> application 객체를 사용해서 xml이 가지고 있는 parameter 값을 read
+    -->
+    <!--
+    Web App 전체 페이지에서 발생하는 Error를 통합적으로 처리
+    1. 상태코드에 따라서 (404, 500), 304(페이지 수정), 정상 : 200 ~ 299
+    2. 예외 객체에 따라서 (IndexOutOfBounds, NullPointerException ... )
+
+    최종 배포 시에만 설정 (개발 도중에는 Error 확인 필요)
+    -->
+<!--    <error-page>-->
+<!--        <error-code>404</error-code>-->
+<!--        <location>/error/error404.jsp</location>-->
+<!--    </error-page>-->
+<!--    <error-page>-->
+<!--        <error-code>500</error-code>-->
+<!--        <location>/error/error500.jsp</location>-->
+<!--    </error-page>-->
 </web-app>
