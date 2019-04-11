@@ -18,16 +18,26 @@ function deleteToDo(event) {
   saveToDos();
 }
 
+function toggleBorder(event) {
+  const btn = event.target;
+  btn.classList.toggle("borderhidden");
+}
+
 function paintToDo(text) {
   const li = document.createElement("li");
   const delBtn = document.createElement("button");
-  const span = document.createElement("span");
+  const h2 = document.createElement("h2");
   const newId = toDos.length + 1;
-  delBtn.innerHTML = "X";
+  const x = document.createElement("img");
+  x.setAttribute("src", "images/X.png");
+  delBtn.appendChild(x);
+  delBtn.classList.add("borderhidden");
   delBtn.addEventListener("click", deleteToDo);
-  span.innerText = text;
+  delBtn.addEventListener("mouseenter", toggleBorder);
+  delBtn.addEventListener("mouseleave", toggleBorder);
+  h2.innerText = text;
+  li.appendChild(h2);
   li.appendChild(delBtn);
-  li.appendChild(span);
   li.id = newId;
   toDoList.appendChild(li);
   const toDoObj = {
