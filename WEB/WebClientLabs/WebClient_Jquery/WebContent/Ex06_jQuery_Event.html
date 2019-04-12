@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <script>
+      /*
+      event attach
+      2.x : bind() <-> unbind
+      3.x : on() <-> off()
+
+      KEY POINT
+      on() 안에서 여러 이벤트를 적용 시 JSON 활용
+      */
+      $(document).ready(function() {
+        $("p").on({
+          click: function() {
+            $(this).css("background-color", "red");
+          },
+          mouseleave: function() {
+            $(this).css("background-color", "green");
+          },
+          mouseenter: function() {
+            $(this).css("background-color", "blue");
+          },
+        });
+
+        $("button").click(function() {
+          $("p").off("click");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>on 함수 사용해서 다중 이벤트 구현하기</p>
+    <hr />
+    <button>이벤트 제거</button>
+  </body>
+</html>

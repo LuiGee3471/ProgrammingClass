@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("button").click(function() {
+          // $(this).hide();
+          $("ul li:first-child").hide();
+          $("tr:odd").css("color", "red");
+          $("tr:even").css("color", "blue");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>List 1:</p>
+    <ul>
+      <li>Coffee</li>
+      <li>Milk</li>
+      <li>Tea</li>
+    </ul>
+
+    <p>List 2:</p>
+    <ul>
+      <li>Coffee</li>
+      <li>Milk</li>
+      <li>Tea</li>
+    </ul>
+
+    <button>Click me</button>
+
+    <h1>Welcome to My Web Page</h1>
+
+    <table border="1">
+      <tr>
+        <th>Company</th>
+        <th>Country</th>
+      </tr>
+      <tr>
+        <td>Alfreds Futterkiste</td>
+        <td>Germany</td>
+      </tr>
+      <tr>
+        <td>Berglunds snabbköp</td>
+        <td>Sweden</td>
+      </tr>
+      <tr>
+        <td>Centro comercial Moctezuma</td>
+        <td>Mexico</td>
+      </tr>
+      <tr>
+        <td>Ernst Handel</td>
+        <td>Austria</td>
+      </tr>
+      <tr>
+        <td>Island Trading</td>
+        <td>UK</td>
+      </tr>
+    </table>
+  </body>
+</html>
