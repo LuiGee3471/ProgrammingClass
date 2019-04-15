@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <script>
+      /*
+      3가지 함수 : parameter 값을 가지면 setter, 없으면 getter
+
+      text() - Sets or returns the text content of selected elements
+      html() - Sets or returns the content of selected elements (including HTML markup)
+      val() - Sets or returns the value of form fields
+
+      div, p, span >> value(x) 속성이 없다
+      */
+      $(document).ready(function() {
+        $("#btn1").click(function() {
+          alert("text : " + $("#test").text());
+        });
+
+        $("#btn2").click(function() {
+          alert(`html : ${$("#test").html()}`);
+        });
+
+        $("#btn3").click(function() {
+          // $("#test").text("<div>AAAAA</div>"); // div가 텍스트 형태로
+          $("#test").html("<div>AAAAA</div>");
+        });
+
+        $("#btn4").click(function() {
+          alert($("test2").val());
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p id="test">안녕하세요 <b>정말</b> 방가방가</p>
+    <button id="btn1">show text</button>
+    <button id="btn2">show html</button>
+    <button id="btn3">html</button>
+    <button id="btn4">input tag</button>
+    <input type="text" id="test2" value="helloworld" />
+  </body>
+</html>

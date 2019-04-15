@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $("#btn0").click(function() {
+          alert($("#w3").attr("href"));
+        });
+
+        // POINT : jQuery 함수가 여러 개의 parameter를 처리할 때 JSON 사용
+        $("#btn1").click(function() {
+          $("#w3s").attr({
+            href: "https://www.daum.net",
+            title: "jQuery Study",
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p><a href="https://www.naver.com" id="w3">naver.com</a></p>
+    <button id="btn0">show button</button>
+    <br />
+    <a href="https://www.naver.com" title="w3popup" id="w3s">
+      www.w3schools.com
+    </a>
+    <br />
+    <button id="btn1">show button</button>
+  </body>
+</html>

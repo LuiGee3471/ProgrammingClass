@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <!-- https://api.jquery.com/category/selectors/form-selectors/ -->
+    <script>
+      $(function() {
+        $("#txtname").val("hong");
+
+        // 1. radio의 기본값을 설정
+        //$("input[type=radio]");
+
+        // value값이 F인 radio를 checked
+        $("input:radio").val(["F"]);
+
+        console.log($("input:radio"));
+        console.log($("input:radio").val()); // 순서대로 먼저 있는 radio value
+        console.log($("input:checked").val()); // 선택된 value
+        // radio가 여러개 있으면 안됨
+
+        console.log($("input:radio[name=gender]:checked").val());
+
+        // select 태그 단일 값
+        // $("#isF").val(); : 선택된 option 태그의 value
+        // $("isF").val("oracle");
+
+        // 단 multiple 속성이 있으면 : 다중 값
+        $("#isF").val(["java", "oracle"]);
+
+        $("#btnok").click(function() {
+          var msg = "";
+          msg += $("#txtname").val() + " / ";
+          msg += $("input:radio[name=gender]:checked").val();
+          console.log("선택값 : " + msg);
+          // 단일값
+
+          // 다중값
+          var selectTag = $("#isF").val(); // 다중값 return array
+          console.log(selectTag);
+
+          for (var index in selectTag) {
+            console.log("value : " + selectTag[index]);
+          }
+
+          // $("input:submit")
+          // $("input[type=submit]")
+          if (
+            $("#myform")
+              .children()
+              .is("input:submit")
+          ) {
+            // 너의 자식 요소로 submit 태그가 있는가
+            alert("true");
+          } else {
+            alert("false");
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <form action="">
+      Textbox : <input type="text" id="txtname" />
+      <br />
+
+      RadioButton : checked 속성
+      <input type="radio" name="gender" value="M" />남
+      <input type="radio" name="gender" value="F" />여
+
+      <br />
+
+      select tag(option)
+      <select id="isF" multiple size="3">
+        <option value="java">자바</option>
+        <option value="jsp">JSP</option>
+        <option value="oracle">오라클</option>
+      </select>
+
+      <br />
+      <input type="button" value="확인" id="btnok" />
+      <br />
+      <div id="myform">
+        submit button : <input type="submit" value="전송" />
+      </div>
+    </form>
+  </body>
+</html>

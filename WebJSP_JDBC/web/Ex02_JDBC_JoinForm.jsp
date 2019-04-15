@@ -1,16 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8" />
-  <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-  />
-  <title>Insert title here</title>
-  <script src="css/jquery/jquery.min.js"></script>
-  <script src="css/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <jsp:include page="common/Head.jsp" />
+  <title>Join Form</title>
   <script type="text/javascript">
     //jquery 로 간단하게 유효성 check 하기
     $(function() {
@@ -45,21 +36,6 @@
       });
     });
   </script>
-  <!--
-CREATE TABLE koreaMember
-(
-  id VARCHAR2(50) PRIMARY KEY ,
-  pwd VARCHAR2(50) NOT NULL,
-  NAME VARCHAR2(50) NOT NULL,
-  age NUMBER ,
-  gender CHAR(4),
-  email VARCHAR2(50),
-  ip   VARCHAR2(50)
-)
--->
-
-  <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="css/simple-sidebar.css" rel="stylesheet" />
 </head>
 <body>
 <div class="d-flex" id="wrapper">
@@ -75,16 +51,16 @@ CREATE TABLE koreaMember
               method="post"
               name="joinForm"
               id="joinForm"
+              class="form-horizontal"
+              role="form"
       >
         <div>
-          <form class="form-horizontal" role="form">
             <h2>회원가입</h2>
             <div class="form-group">
               <label for="id" class="col-sm-3 control-label">ID</label>
               <div class="col-sm-9">
                 <input
-                        type="text"
-                        id="id"
+                        type="text" name="id" id="id"
                         placeholder="아이디"
                         class="form-control"
                         autofocus
@@ -92,24 +68,22 @@ CREATE TABLE koreaMember
               </div>
             </div>
             <div class="form-group">
-              <label for="password" class="col-sm-3 control-label"
+              <label for="pwd" class="col-sm-3 control-label"
               >Password</label
               >
               <div class="col-sm-9">
                 <input
-                        type="password"
-                        id="password"
+                        type="password" name="pwd" id="pwd"
                         placeholder="비밀번호"
                         class="form-control"
                 />
               </div>
             </div>
             <div class="form-group">
-              <label for="name" class="col-sm-3 control-label">Name</label>
+              <label for="mname" class="col-sm-3 control-label">Name</label>
               <div class="col-sm-9">
                 <input
-                        type="text"
-                        id="name"
+                        type="text" name="mname" id="mname"
                         placeholder="이름"
                         class="form-control"
                 />
@@ -119,8 +93,7 @@ CREATE TABLE koreaMember
               <label for="age" class="col-sm-3 control-label">Age</label>
               <div class="col-sm-9">
                 <input
-                        type="text"
-                        id="age"
+                        type="text" name="age" id="age" maxlength="3"
                         placeholder="나이"
                         class="form-control"
                 />
@@ -135,7 +108,8 @@ CREATE TABLE koreaMember
                       <input
                               type="radio"
                               id="femaleRadio"
-                              value="Female"
+                              name="gender"
+                              value="F"
                       />&nbsp;여성
                     </label>
                   </div>
@@ -144,7 +118,8 @@ CREATE TABLE koreaMember
                       <input
                               type="radio"
                               id="maleRadio"
-                              value="Male"
+                              name="gender"
+                              value="M"
                       />&nbsp;남성
                     </label>
                   </div>
@@ -157,11 +132,9 @@ CREATE TABLE koreaMember
               </label>
               <div class="col-sm-9">
                 <input
-                        type="email"
-                        id="email"
+                        type="text" name="email" id="email"
                         placeholder="Email"
                         class="form-control"
-                        name="email"
                 />
               </div>
             </div>
@@ -172,22 +145,12 @@ CREATE TABLE koreaMember
             >
               Register
             </button>
-          </form>
         </div>
       </form>
     </div>
   </div>
 </div>
 
-<div class="footer">
-  <jsp:include page="common/Bottom.jsp" />
-</div>
+<jsp:include page="common/Bottom.jsp" />
 
-<script>
-  $("#menu-toggle").click(function(e) {
-    e.preventDefault();
-    $("#wrapper").toggleClass("toggled");
-  });
-</script>
-</body>
-</html>
+

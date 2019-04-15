@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <script>
+      /*
+      Java : for (String s : array or collection) {}
+      JavaScript : for (var s in 배열(Array)) {}
+                   for (var index in Array)
+                   for (var key in Object)
+
+      jQuery : each()
+
+      jQuery : 핵심(AJAX 비동기 처리)
+
+      1. $(selector).each(function() { this });
+      2. $(selector).each(function(index) { this });
+      3. $(selector).each(function(index, element) { element });
+
+      * selector 없는 each
+      1. $.each(selector, function(){this})
+      2. $.each(selector, function(){this})
+      3. $.each(selector, function(){element})
+
+       */
+      $(function() {
+        // $(selector).each(function(){ this })
+        $("p").each(function() {
+          console.log("this : " + $(this).text());
+          // this = <p>
+        });
+
+        // 2. $(selector).each(function(index) { this });
+        $("p").each(function(index) {
+          console.log(`index: ${index}`);
+          console.log("this " + $(this).text());
+
+          // $(this).attr("id, "param-" + index) :
+          // 여러 개의 속성을 한 번에 : {} Object
+          $(this).attr({
+            id: "param-" + index,
+            style: "color: red",
+          });
+        });
+
+        // 3. $(selector).each(function(index, element){ element });
+        // 제일 많이 사용(가장 편한 방식)
+        // HTML의 element 대상으로
+        $("p").each(function(index, element) {
+          console.log("index : " + index);
+          console.log("element : " + element + " / " + $(element).text());
+        });
+
+        // 응용학습
+        // JavaScript Array
+        // var arr = ["사과", "배", "수박"];
+        // JSON var obj = {}
+        // 객체 배열
+        // var objarr = [{}, {}, {}];
+
+        var array = [
+          { name: "naver", link: "www.naver.com" },
+          { name: "daum", link: "www.daum.net" },
+          { name: "bit", link: "www.bit.com" },
+        ];
+
+        // 문제
+        // name의 값과 link의 값을 출력하세요
+        // array.forEach(function(obj) {
+        //   console.log(`${obj.name} / ${obj.link}`);
+        // });
+
+        // 코드 안에 있는 객체나 배열
+        $.each(array, function(index) {
+          console.log(`${array[index].name}  / ${array[index].link}`);
+        });
+
+        /*
+        $(selector).each(function(index, element) { element }); : body 안 태그 정보
+        $.each(selector, function(index, element) { element }); : script 내부 자원
+         */
+
+        var board = {
+          values: [
+            { no: 1, title: "hello" },
+            { no: 2, title: "world" },
+            { no: 3, title: "Korea" },
+          ],
+          search: "검색",
+        };
+
+        // 문제 $.each() 문을 사용해서 no 값과 타이틀 값을 출력하세요
+        console.log("each() 1st");
+        $.each(board.values, function(index, element) {
+          console.log(`no : ${element.no} /  title: ${element.title}`);
+        });
+
+        console.log("each() 2nd");
+        // 문제 $.each() 문을 통해서 no, title, search 값을 출력하세요
+        $.each(board, function(key, value) {
+          if (typeof value === "object") {
+            $.each(value, function(index, element) {
+              console.log(`no : ${element.no} / title : ${element.title}`);
+            });
+          } else {
+            console.log(`${key} : ${value}`);
+          }
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>java</p>
+    <p>JSP</p>
+    <p>oracle</p>
+    <input type="button" value="click" id="btn" />
+  </body>
+</html>
