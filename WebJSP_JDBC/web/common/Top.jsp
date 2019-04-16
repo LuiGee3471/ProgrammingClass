@@ -19,6 +19,19 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+      <%
+        String id = null;
+        id = (String) session.getAttribute("userid");
+        if (id != null) {
+          if (id.equals("admin")) {
+            out.print("<li class='nav-item'><a class='nav-link' href='Ex03_Memberlist.jsp'>Member</a></li>");
+          } else {
+            // 로그인 하지 않은 사용자
+            // 강제로 페이지 이동
+            out.print("<a href='Ex02_JDBC_Login.jsp'></a>");
+          }
+        }
+      %>
       <li class="nav-item active">
         <a class="nav-link" href="Ex02_JDBC_Main.jsp"
         >Main <span class="sr-only">(current)</span></a

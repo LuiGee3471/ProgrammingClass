@@ -1,5 +1,35 @@
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.Connection"%>
+<%@ page import="java.sql.DriverManager" %>
+<%@ page import="java.sql.ResultSet" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	/*
+	Ex03_MemberEdit.jsp?id=hong
+	sql> select * from koreamember where id = hong
+	결과를 화면에 출력 : <td>rs.getString(1)</td>
+	출력(수정(X)) : <td>rs.getString("name")</td>
+	출력(수정(O)) : <td><input type="text" value="rs.getString("name")></td>
+	출력(수정(X), 다른 페이지 전송) : <td><input type="text" name="" value="rs.getString()" readonly></td>
+
+	Ex03_MemberEditok.jsp
+	sql : update koreamember set ename=?, job=?, sal=? where id = ?
+	 */
+	String id = request.getParameter("id");
+	Connection conn = null;
+	PreparedStatement pstmt = null;
+	ResultSet rs = null;
+
+	try {
+		conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "bituser", "1004");
+		String sql = "select * from koreamember where id = ?";
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, id);
+		rs = pstmt.executeQuery();
+
+		rs.next();
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,32 +72,41 @@ td {
 							<tr>
 								<td>아이디</td>
 								<td>
-								  
+								  <input type="text" name="id" value="<%=rs.getString("id")%>" readonly />
 								</td>
 							</tr>
 							<tr>
 								<td>비번</td>
-								<td></td>
+								<td>
+									<%=rs.getString("pwd")%>
+								</td>
 							</tr>
 							<tr>
 								<td>이름</td>
 								<td>
-								
+								  <input type="text" name="name" value="<%=rs.getString("name")%>" style="background-color: gold;"/>
 								</td>
 							</tr>
 							<tr>
 								<td>나이</td>
 								<td>
-									
+									<input type="text" name="age" value="<%=rs.getString("age")%>" style="background-color: gold;">
 								</td>
 							</tr>
 							<tr>
 								<td>성별</td>
-								<td></td>
+								<td>
+									[<%=rs.getString("gender").trim().equals("M") ? "남" : "여"%>]
+									<input type="radio" name="gender" id="female" value="F"
+									<%if (rs.getString("gender").trim().equals("F")) {%>checked<%}%>>여
+									<input type="radio" name="gender" id="male" value="M"
+												 <%if (rs.getString("gender").trim().equals("M")) {%>checked<%}%>>남
+								</td>
 							</tr>
 							<tr>
 								<td>이메일</td>
 								<td>
+									<input type="text" name="email" value="<%=rs.getString("email")%>" style="background-color: gold;">
 								</td>
 							</tr>
 							<tr>
@@ -87,3 +126,10 @@ td {
 </body>
 </html>
 
+<%
+	} catch (Exception e) {
+		e.printStackTrace();
+	} finally {
+
+	}
+%>

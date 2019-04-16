@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <script>
+      function javascriptFunc() {
+        var arrayobj = [];
+        $("tbody tr").each(function(index, element) {
+          var obj = {};
+          obj.class = $(element)
+            .children()
+            .eq(0)
+            .text();
+          obj.name = $(element)
+            .children()
+            .eq(1)
+            .text();
+          obj.number = $(element)
+            .children()
+            .eq(2)
+            .text();
+
+          arrayobj.push(obj);
+        });
+
+        console.log(arrayobj);
+
+        // 2. JavaScript 구문 사용해서 arrayObj 값으로 출력
+        // 출력한 결과를 id=display인 div 태그안에 append
+
+        for (var index in arrayobj) {
+          var text = document.createElement("p");
+          text.innerText = `${arrayobj[index].class}, ${
+            arrayobj[index].name
+          }, ${arrayobj[index].number}`;
+          document.getElementById("display").appendChild(text);
+        }
+
+        //3. jquery 가지고 있는 $.each(function(){}) 사용해서 arrayobj값 출력
+        // 출력한 결과를 id=display2 인 div 태그 안에 append 하세요
+        $.each(arrayobj, function(index, obj) {
+          $("#display2").append(`${obj.class} ${obj.name} ${obj.number}<br>`);
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <table border="1">
+      <thead>
+        <tr>
+          <td>기수</td>
+          <td>이름</td>
+          <td>번호</td>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>101st</td>
+          <td>홍길동</td>
+          <td>10</td>
+        </tr>
+        <tr>
+          <td>102nd</td>
+          <td>김유신</td>
+          <td>20</td>
+        </tr>
+        <tr>
+          <td>103rd</td>
+          <td>유관순</td>
+          <td>30</td>
+        </tr>
+      </tbody>
+    </table>
+    <p><button onclick="javascriptFunc()">button</button></p>
+    <div id="display"></div>
+    <div id="display2"></div>
+  </body>
+</html>
