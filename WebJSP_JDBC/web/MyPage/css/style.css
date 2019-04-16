@@ -6,20 +6,8 @@
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.top-nav a,
-.aside-nav a {
+a {
   text-decoration: none;
-  color: #6c757d;
-}
-
-.top-nav a:hover,
-.aside-nav a:hover {
-  color: black;
-}
-
-.top-nav a:active,
-.aside-nav a:active {
-  transform: scale(1.05);
 }
 
 html,
@@ -37,7 +25,7 @@ footer {
 header {
   display: flex;
   flex-direction: row-reverse;
-  height: 8%;
+  height: 10%;
   border-bottom: 1px solid #dfe6e9;
 }
 
@@ -48,25 +36,17 @@ header h1 {
 
 .center-area {
   display: flex;
-  height: 84%;
+  height: 80%;
 }
 
 aside {
   width: 20%;
-  height: 100%;
-  display:flex;
   border-right: 1px solid #dfe6e9;
 }
 
 main {
   width: 80%;
   overflow: hidden;
-  height: 100%;
-}
-
-nav {
-  align-self: center;
-  height: 80%;
 }
 
 .top-nav {
@@ -87,8 +67,6 @@ nav {
 
 .aside-nav {
   list-style-type: none;
-  width: 90%;
-  margin-left: 5%;
 }
 
 .aside-nav a {
@@ -99,7 +77,7 @@ nav {
 }
 
 footer {
-  height: 8%;
+  height: 10%;
   display: flex;
   align-items: center;
   justify-content: center;
