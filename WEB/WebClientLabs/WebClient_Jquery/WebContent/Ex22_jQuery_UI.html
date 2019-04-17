@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>DatePicker</title>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function() {
+        $("#datepicker").datepicker({
+          dateFormat: "yy-mm-dd",
+          numberOfMonths: 2, // 선택된 날짜를 alert()
+          onSelect: function(date) {
+            // parameter: 선택된 날짜
+            alert(`onSelect: ${date}`);
+          },
+          onClose: function(date) {
+            var currentDate = $("#datepicker").datepicker("getDate");
+            console.log(currentDate);
+            var date = new Date(currentDate);
+            alert(
+              `${date.getFullYear()}:${date.getMonth() + 1}:${date.getDate()}`
+            );
+          },
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>Date: <input type="text" id="datepicker" /></p>
+  </body>
+</html>

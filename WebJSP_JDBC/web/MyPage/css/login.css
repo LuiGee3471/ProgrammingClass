@@ -1,4 +1,4 @@
-@charset "UTF-8";
+﻿@charset "UTF-8";
 
 form{
 	text-align: center;
@@ -12,7 +12,7 @@ form{
 .form-pwd{
 	margin-top: 25px;
 }
-form > button{
+.btn{
 	margin: 20px;
 	padding : 12px 25px 12px 25px;
 	background-color : #3498db;

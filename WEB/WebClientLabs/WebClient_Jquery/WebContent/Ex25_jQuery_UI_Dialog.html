@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dialog</title>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function() {
+        $("#event-date").datepicker({
+          dateFormat: "yy년mm월dd일",
+        });
+
+        $("#dialog").dialog({
+          autoOpen: false,
+          show: {
+            effect: "blind",
+            duration: 2000,
+          },
+          hide: {
+            effect: "explode",
+            duration: 1000,
+          },
+          buttons: {
+            submit: function() {
+              var eventname = $("#event-name").val();
+              var eventdate = $("#event-date").val();
+              // 선택자 부분에 태그를 기술하면 createElement()와 같은 기능
+              $("<h3></h3>")
+                .html(`${eventname}:${eventdate}`)
+                .appendTo("#output");
+              $("#dialog").dialog("close");
+            },
+
+            reset: function() {
+              $("#event-name").val("");
+              $("#event-date").val("");
+            },
+
+            cancel: function() {
+              $("#event-name").val("");
+              $("#event-date").val("");
+              $("#dialog").dialog("close");
+            },
+          },
+          resizable: false,
+          modal: true,
+        });
+
+        $("#open-button").click(function() {
+          // $("#dialog").dialog("open");
+          $("#dialog").dialog({
+            autoOpen: true,
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h3 id="open-button">일정 생성</h3>
+    <hr />
+    <div id="output"></div>
+
+    <!-- POPDIV -->
+    <div id="dialog">
+      <h3>일정 만들기</h3>
+      <label for="event-name">일정 이름</label>
+      <input type="text" id="event-name" />
+      <br />
+      <label for="event-date">일정 날짜</label>
+      <input type="text" id="event-date" readonly />
+    </div>
+  </body>
+</html>

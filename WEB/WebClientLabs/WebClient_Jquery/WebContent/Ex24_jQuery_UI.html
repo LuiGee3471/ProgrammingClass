@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Dialog</title>
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+    <script src="scripts/jquery-3.4.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function() {
+        $("#dialog").dialog({
+          autoOpen: false,
+        });
+
+        $("#opener").click(function() {
+          // $("#dialog").dialog("open");
+          $("#dialog").dialog({
+            autoOpen: true,
+            show: {
+              effect: "blind",
+              duration: 2000,
+            },
+            hide: {
+              effect: "explode",
+              duration: 1000,
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>Basic Content</p>
+    <button id="opener">Open Dialog</button>
+
+    <div id="dialog" title="Basic dialog">
+      <p>
+        This is the default dialog which is useful for displaying information.
+        The dialog window can be moved, resized and closed with the 'x' icon.
+      </p>
+    </div>
+  </body>
+</html>
