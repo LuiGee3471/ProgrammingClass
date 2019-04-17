@@ -12,7 +12,7 @@
       <div class="navbar">
         <ul>
           <li>
-            <a href="#" class="home"><img src="images/home.png"/></a>
+            <a href="#" class=""><img src="images/home.png"/></a>
           </li>
           <li>
             <a href="#" class="login"><img src="images/login.png"/></a>
@@ -23,15 +23,26 @@
         </ul>
       </div>
     </div>
-    <div class="card login">
+    <div class="card login-page invisible">
+      <a href="#" class="home"><img src="images/home.png"/></a>
       <h1 class="title">Login</h1>
       <div class="form">
         <input type="text" placeholder="ID" class="input" />
         <input type="password" placeholder="Password" class="input" />
       </div>
     </div>
-    <button class="inv">invisible</button>
-    <button class="vis">visible</button>
+    <div class="card signup-page invisible">
+      <a href="#" class="home"><img src="images/home.png"/></a>
+      <h1 class="title">Sign Up</h1>
+      <div class="form">
+        <input type="text" placeholder="ID" class="input" />
+        <input type="password" placeholder="비밀번호" class="input" />
+        <input type="radio" name="gender" id="female" class="radio" />
+        <input type="radio" name="gender" id="male" class="radio" />
+        <input type="text" placeholder="이름" class="input" />
+        <input type="email" placeholder="email" class="input" />
+      </div>
+    </div>
     <script src="js/script.js"></script>
   </body>
 </html>
