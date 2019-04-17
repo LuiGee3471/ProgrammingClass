@@ -7,6 +7,7 @@
 <div class="center-area">
   <jsp:include page="common/aside.jsp"/>
   <main>
+    <img src="images/main.jpg" alt="Main Image"/>
   </main>
 </div>
 <jsp:include page="common/footer.jsp"/>
