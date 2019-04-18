@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>XMLHttpRequest 2</title>
+    <script>
+      var httpReq = null;
+      function getInstance() {
+        if (window.XMLHttpRequest) {
+          return new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          return new ActiveXObject("Msxml12.XMLHTTP");
+        } else {
+          throw new Error("AJAX를 지원하지 않습니다");
+        }
+      }
+
+      function handlerStateChange() {
+        if (httpReq.readyState == 4) {
+          if (httpReq.status >= 200 && httpReq.status < 300) {
+            // UI 구성
+            document.getElementById("result").innerHTML = httpReq.responseText;
+          }
+        }
+      }
+
+      function sendData() {
+        httpReq = getInstance();
+        httpReq.onreadystatechange = handlerStateChange;
+        var str = document.getElementById("emp").value;
+        httpReq.open("POST", "Ex05_EmpSearch.jsp?empno=" + str);
+        httpReq.send();
+      }
+    </script>
+  </head>
+  <body>
+    <h3>사원 정보 조회</h3>
+    <fieldset>
+      <legend>검색 단어</legend>
+      <select name="" id="emp" onchange="sendData()">
+        <option value="0000" disabled>SELECT EMPNO</option>
+        <option value="7788">SCOTT</option>
+        <option value="7902">FORD</option>
+        <option value="7521">WORD</option>
+      </select>
+    </fieldset>
+    <div id="result"></div>
+  </body>
+</html>
