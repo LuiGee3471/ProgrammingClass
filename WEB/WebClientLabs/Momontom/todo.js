@@ -1,8 +1,8 @@
-const toDoForm = document.querySelector(".js-toDoForm");
-const toDoInput = toDoForm.querySelector("input");
-const toDoList = document.querySelector(".js-toDoList");
+const toDoForm = document.querySelector('.js-toDoForm');
+const toDoInput = toDoForm.querySelector('input');
+const toDoList = document.querySelector('.js-toDoList');
 
-const TODOS_LS = "toDos";
+const TODOS_LS = 'toDos';
 
 let toDos = [];
 
@@ -20,21 +20,21 @@ function deleteToDo(event) {
 
 function toggleBorder(event) {
   const btn = event.target;
-  btn.classList.toggle("borderhidden");
+  btn.classList.toggle('borderhidden');
 }
 
 function paintToDo(text) {
-  const li = document.createElement("li");
-  const delBtn = document.createElement("button");
-  const h2 = document.createElement("h2");
+  const li = document.createElement('li');
+  const delBtn = document.createElement('button');
+  const h2 = document.createElement('h2');
   const newId = toDos.length + 1;
-  const x = document.createElement("img");
-  x.setAttribute("src", "images/X.png");
+  const x = document.createElement('img');
+  x.setAttribute('src', 'images/X.png');
   delBtn.appendChild(x);
-  delBtn.classList.add("borderhidden");
-  delBtn.addEventListener("click", deleteToDo);
-  delBtn.addEventListener("mouseenter", toggleBorder);
-  delBtn.addEventListener("mouseleave", toggleBorder);
+  delBtn.classList.add('borderhidden');
+  delBtn.addEventListener('click', deleteToDo);
+  delBtn.addEventListener('mouseenter', toggleBorder);
+  delBtn.addEventListener('mouseleave', toggleBorder);
   h2.innerText = text;
   li.appendChild(h2);
   li.appendChild(delBtn);
@@ -52,7 +52,7 @@ function handleSubmit(event) {
   event.preventDefault();
   const currentValue = toDoInput.value;
   paintToDo(currentValue);
-  toDoInput.value = "";
+  toDoInput.value = '';
 }
 
 function loadToDos() {
@@ -67,7 +67,7 @@ function loadToDos() {
 
 function init() {
   loadToDos();
-  toDoForm.addEventListener("submit", handleSubmit);
+  toDoForm.addEventListener('submit', handleSubmit);
 }
 
 init();

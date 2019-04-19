@@ -4,9 +4,9 @@ const COORDS = "coords";
 
 function getWeather(lat, lon) {
   fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`,
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
   )
-    .then(response => response.json())
+    .then((response) => response.json())
     .then((json) => {
       const temperature = json.main.temp;
       const place = json.name;
