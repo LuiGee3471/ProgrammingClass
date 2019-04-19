@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import "./App.css";
-import Movie from "./Movie";
+import React, { Component } from 'react';
+import './App.css';
+import Movie from './Movie';
 
 class App extends Component {
   // Render : componentWillMount() -> render() -> componentDidMount()
@@ -16,9 +16,11 @@ class App extends Component {
     const movies = this.state.movies.map(movie => {
       return (
         <Movie
-          title={movie.title}
+          title={movie.title_english}
           poster={movie.medium_cover_image}
           key={movie.id}
+          genres={movie.genres}
+          synopsis={movie.synopsis}
         />
       );
     });
@@ -31,21 +33,24 @@ class App extends Component {
     // wait to finish(whatever return value is)
     this.setState({
       // not going to call unless await finishes
-      movies
+      movies,
     });
   };
 
   _callApi = () => {
-    return fetch("https://yts.am/api/v2/list_movies.json?sort_by=rating")
+    return fetch(
+      'https://yts.am/api/v2/list_movies.json?sort_by=download_count'
+    )
       .then(response => response.json())
       .then(json => json.data.movies)
       .catch(err => console.log(err));
   };
 
   render() {
+    const { movies } = this.state;
     return (
-      <div className="App">
-        {this.state.movies ? this._renderMovies() : "Loading"}
+      <div className={movies ? 'App' : 'App-loading'}>
+        {movies ? this._renderMovies() : 'Loading'}
       </div>
     );
   }
