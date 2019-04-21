@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+      /*
+      Low-level Interface에서 제공하는 $.ajax()함수
+      (개발자가 원하는 모든 형태의 비동기 코드 직접 구현 : 상세 구현)
+      jQuery.ajax (url [, settings])
+
+      [, setting] >> json 객체 형태로 옵션을 정의
+
+      dataType >> (서버가 응답하는 데이터 종류(Type))
+      1. Text(JSON, script, html, text)
+      2. XML
+
+      1. responseText : json, script, html, text
+      2. responseXML : XML
+      */
+      $(function() {
+        $("#message").click(function() {
+          jQuery.ajax({
+            url: "Ex02_menu.html",
+            dataType: "html", // 서버가 응답하는 데이터 타입이 HTML
+            success: function(responseData) {
+              //서버가 응답한 코드(200~299)라면
+              // function()
+              // function(responseData) : 데이터만 받겠다
+
+              var lis = $(responseData)
+                .find("li");
+              $("#menudiv").html(lis);
+
+              var evenli = lis.filter(":even");
+              console.log(evenli);
+
+              // KEY POINT
+              // 가지고 온 데이터에서 li 태그 내용만 붙이고 싶어요
+              // .find() 선택된 요소의 자식 노드에서 인자를 찾는다
+              // $('#div').find(ul);
+              // id div의 자식 노드에서 ul 요소만 찾는다
+
+              // .filter() : 선택된 요소를 포함한 노드에서 요소를 찾는다
+              // $("#div").filter(ul);
+              // id div 노드 자신을 포함한 요소에서 ul 요소만 찾는다
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="menudiv">
+      <a href="#" id="menu1"></a>
+    </div>
+    <span id="message">클릭하세요</span>
+  </body>
+</html>

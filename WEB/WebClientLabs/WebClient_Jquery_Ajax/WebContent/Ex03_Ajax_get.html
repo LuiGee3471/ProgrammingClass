@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+      /*
+        jQuery.get( url [, data ] [, success ] [, dataType ] )
+
+        https://www.w3schools.com/jquery/jquery_ref_ajax.asp
+      */
+      $(function() {
+        $('#btn').click(function() {
+          $.get('Ex03_Company.xml', function(data) {
+            // 개발자 마음(데이터 가공 : 화면에 출력)
+            $('#display').empty();
+
+            $(data)
+              .find('Company')
+              .each(function(index, element) {
+                var entry = $(element);
+                var html = '<div>' + entry.attr('CompanyType') + '</div>';
+
+                html +=
+                  '<div>' + entry.find('CompanyName').text() + '</div><br>';
+                html +=
+                  '<div>' + entry.find('CompanyNumber').text() + '</div><br>';
+                html +=
+                  '<div>' + entry.find('CompanyAddress').text() + '</div><br>';
+
+                $('#display').append(html);
+
+                // 실제 사용 코드
+                // var companyList = $(data).find('Company');
+                // $.each(companyList, function() {})
+              });
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="button" id="btn" value="회사소개" />
+    <div id="display" style="background-color: gray">DATA</div>
+  </body>
+</html>

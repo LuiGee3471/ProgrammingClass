@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>XMLHttpRequest 2</title>
+    <script>
+      var httpReq = null;
+      function getInstance() {
+        if (window.XMLHttpRequest) {
+          return new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          return new ActiveXObject("Msxml12.XMLHTTP");
+        } else {
+          throw new Error("AJAX를 지원하지 않습니다");
+        }
+      }
+
+      function handlerStateChange() {
+        if (httpReq.readyState == 4) {
+          if (httpReq.status >= 200 && httpReq.status < 300) {
+            // UI 구성
+            document.getElementById("txthint").innerHTML = httpReq.responseText;
+          }
+        }
+      }
+
+      function sendData(str) {
+        httpReq = getInstance();
+        httpReq.onreadystatechange = handlerStateChange;
+        httpReq.open("POST", "Ex04_word_Search.jsp?word=" + str);
+        httpReq.send();
+      }
+    </script>
+  </head>
+  <body>
+    <h3>단어 검색하기</h3>
+    <form action="">
+      word: <input type="text" id="txt1" onkeyup="sendData(this.value)" />
+    </form>
+    <fieldset>
+      <legend>검색 단어</legend>
+      <span id="txthint"></span>
+    </fieldset>
+  </body>
+</html>

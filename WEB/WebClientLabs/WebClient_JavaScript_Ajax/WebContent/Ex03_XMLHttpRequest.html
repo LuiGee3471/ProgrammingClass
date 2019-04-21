@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>XMLHttpRequest 2</title>
+    <script>
+      var httpReq = null;
+      function getInstance() {
+        if (window.XMLHttpRequest) {
+          return new XMLHttpRequest();
+        } else if (window.ActiveXObject) {
+          return new ActiveXObject("Msxml12.XMLHTTP");
+        } else {
+          throw new Error("AJAX를 지원하지 않습니다");
+        }
+      }
+
+      function handlerStateChange() {
+        if (httpReq.readyState == 4) {
+          if (httpReq.status >= 200 && httpReq.status < 300) {
+            var tempArray = [];
+            tempArray = httpReq.responseText.trim().split(", ");
+
+            var printdata = "<br />";
+            for (var i = 0; i < tempArray.length; i++) {
+              printdata += tempArray[i] + "<br />";
+            }
+
+            var view = document.getElementById("div-view");
+            view.innerHTML = printdata;
+          }
+        }
+      }
+
+      function sendData() {
+        httpReq = getInstance();
+        httpReq.onreadystatechange = handlerStateChange;
+
+        var key = document.getElementById("select-menu").selectedIndex;
+
+        httpReq.open("POST", "Ex03_Server_param.jsp?no=" + key);
+        httpReq.send();
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Ajax (xmlHttpRequest 객체 사용)</h3>
+    <div style="background-color: gray; width: 500px; text-align: center;">
+      <hr style="color: red;" />
+      <select id="select-menu" onchange="sendData()">
+        <option>0번 index</option>
+        <option>1번 index</option>
+        <option>2번 index</option>
+      </select>
+      <span id="div-view"></span>
+    </div>
+  </body>
+</html>

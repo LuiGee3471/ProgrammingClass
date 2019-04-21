@@ -1,6 +1,6 @@
-const weather = document.querySelector(".js-weather");
-const API_KEY = "7e894a2c970923032fb7a77ad196a872";
-const COORDS = "coords";
+const weather = document.querySelector('.js-weather');
+const API_KEY = '7e894a2c970923032fb7a77ad196a872';
+const COORDS = 'coords';
 
 function getWeather(lat, lon) {
   fetch(
