@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $('#btn').click(function() {
+          const flickerAPI = `https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?`;
+          // tags=${}&tagmode=any&format=json&
+          $.getJSON(
+            flickerAPI,
+            {
+              tags: $('#search').val(),
+              tagmode: 'any',
+              format: 'json',
+            },
+            function(data, textStatus, xhr) {
+              console.log(data);
+              console.log(data.items); // Array
+              $('#images').empty();
+              $.each(data.items, function(index, element) {
+                $('<img>')
+                  .attr('src', element.media.m)
+                  .appendTo($('#images'));
+              });
+            }
+          );
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <input type="text" name="" id="search" />
+    <input type="button" value="검색하기" id="btn" />
+    <hr />
+    <div id="images"></div>
+  </body>
+</html>

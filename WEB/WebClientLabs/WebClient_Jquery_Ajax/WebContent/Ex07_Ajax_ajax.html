@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $.ajax({
+          url: 'Ex07_Ajax_board.json',
+          type: 'GET', // xhr.open('POST', ...)
+          dataType: 'JSON',
+          success: function(data) {
+            console.log(data);
+            $('#treedata').append(
+              '<tr><td>ID</td><td>Name</td><td>TITLE</td><td>CONTENT</td></tr>'
+            );
+            $.each(data, function() {
+              // this
+              // this >> {id: 1, ....}
+              console.log('data: ' + this);
+              console.log(`${this.id} / ${this.name}`);
+              $('#treedata').append(
+                `<tr><td>${this.id}</td><td>${this.name}</td><td>
+                  ${this.title}</td><td>${this.content}</td></tr>`
+              );
+            });
+          },
+          error: function() {
+            alert(xhr.status);
+          },
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <table id="treedata" border="1"></table>
+  </body>
+</html>

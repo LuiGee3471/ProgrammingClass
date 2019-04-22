@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $('#btn #btnload').click(function() {
+          // 내부적으로: dataType: "json" 설정을 가지고 있다
+          // jquery.getJSON(url [,data] [, success])
+          $.getJSON('Ex05_json.json', function(data) {
+            console.log(data);
+
+            // 문제 : table을 만들고 서버에서 받은 데이터를 td태그안에 넣으세요
+            $('#display').append($('<table></table>'));
+            $(data).each(function(index, element) {
+              $('#display table').append(
+                `<tr><td>${element.num}</td><td>${element.Name}</td></tr>`
+              );
+            });
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div id="btn"><div id="btnload">JSON DATA LOAD</div></div>
+    <div id="display"></div>
+  </body>
+</html>

@@ -4,6 +4,11 @@ public class Emp {
     private int empno;
     private String ename;
 
+    public Emp(int empno, String ename) {
+        this.empno = empno;
+        this.ename = ename;
+    }
+
     public int getEmpno() {
         return empno;
     }

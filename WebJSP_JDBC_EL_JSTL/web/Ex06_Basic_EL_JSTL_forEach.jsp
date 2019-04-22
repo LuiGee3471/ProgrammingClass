@@ -1,3 +1,5 @@
+<%@ page import="kr.or.bit.Emp" %>
+<%@ page import="java.util.*" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
@@ -80,8 +82,59 @@ EL이 c:set 접근 가능 : ${intarr}<br>
 <h3>forEach 활용하기 2탄</h3>
 <c:forEach var="i" items="${intarr}" varStatus="status">
   index : ${status.index}&nbsp;&nbsp;&nbsp;
-  count : ${status.count}&nbsp;&nbsp;&nbsp;
+  count : ${status.count}
   value : ${i}<br>
 </c:forEach>
+<h3>TODAY POINT(JSTL forEach)</h3>
+<%
+  List<Emp> emplist = new ArrayList<>();
+  emplist.add(new Emp(1000, "A"));
+  emplist.add(new Emp(2000, "B"));
+  emplist.add(new Emp(3000, "C"));
+
+  // EL&JSTL을 사용하지 않으면
+  for (Emp e : emplist) {
+      out.print(e.getEmpno() + " / " + e.getEname() + "<br>");
+  }
+%>
+
+<h3>JSTL</h3>
+<c:set var="list" value="<%=emplist%>" />
+<table border="1">
+  <tr><td>사번</td><td>이름</td></tr>
+  <c:forEach var="emp" items="${list}">
+    <tr><td>${emp.empno}</td><td>${emp.ename}</td></tr>
+  </c:forEach>
+</table>
+<hr>
+<table border="2">
+  <tr><td>사번</td><td>이름</td></tr>
+  <c:forEach var="emp" items="<%=emplist%>">
+    <tr><td>${emp.empno}</td><td>${emp.ename}</td></tr>
+  </c:forEach>
+</table>
+<h3>JSTL 사용 Map 다루기</h3>
+<%
+  Map<String, Object> hm = new HashMap<>();
+  hm.put("name", "hong");
+  hm.put("pwd", "1004");
+  hm.put("date", new Date());
+%>
+<c:set var="hm" value="<%=hm%>" />
+<c:forEach var="obj" items="${hm}">
+  ${obj.key} => ${obj.value}<br>
+</c:forEach>
+
+key값을 통해 value값을 얻는다
+name: ${hm.name}<br>
+
+<h3>JSTL 단일 구분자</h3>
+<c:forTokens var="token" items="A.B.C.D" delims=".">
+  ${token}<br>
+</c:forTokens>
+<h3>JSTL 복합 구분자</h3>
+<c:forTokens var="token" items="A.B/C-D" delims="./-">
+  ${token}<br>
+</c:forTokens>
 </body>
 </html>
