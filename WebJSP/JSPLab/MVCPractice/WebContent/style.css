@@ -1,0 +1,64 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+header {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#container {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  width: 100%;
+  height: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#empTable {
+  font-size: 0.8em;
+  width: 60%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+#empTable thead tr {
+  background-color: beige;
+  border-radius: 10px 10px 0 0;
+}
+
+#empTable tbody tr:nth-child(2n-1) {
+  background-color: aliceblue;
+  border-bottom: 1px solid darkgrey;
+}
+
+#empTable tbody tr:nth-child(2n) {
+  background-color: beige;
+  border-bottom: 1px solid darkgrey;
+}
+
+#empTable tfoot tr {
+  background-color: beige;
+  text-align: center;
+  border-radius: 0 0 10px 10px;
+}
+
+#empTable th,
+#empTable td {
+  padding: 5px 10px;
+}

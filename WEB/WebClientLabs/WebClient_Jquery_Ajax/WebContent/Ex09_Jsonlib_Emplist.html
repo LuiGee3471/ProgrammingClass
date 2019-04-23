@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script>
+      $(function() {
+        $('#btn').click(function() {
+          $.ajax({
+            url:
+              'http://localhost:8090/WebClient_Jquery_Ajax/Ex09_Jsonlib_Emplist.jsp',
+            type: 'get',
+            dataType: 'json', // POINT
+            success: function(data) {
+              $.each(data, function(index, emp) {
+                $('#emplist').append(
+                  `<tr><td>${index + 1}</td><td>${emp.empno}</td>
+                  <td>${emp.ename}</td><td>${emp.sal}</td>
+                  <td>${emp.job}</td></tr>`
+                );
+              });
+            },
+            error: function(xhr) {
+              alert(xhr.status + ': ERROR');
+            },
+          });
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <h3>EMP LIST</h3>
+    <input type="button" value="Emplist" id="btn" />
+    <hr />
+    <table id="emplist" border="1"></table>
+  </body>
+</html>
