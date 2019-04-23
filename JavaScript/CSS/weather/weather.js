@@ -10,9 +10,9 @@ const weatherDiv = [w1, w2, w3, w4, w5];
 
 function printWeather(weathers) {
   weathers.forEach((day, index) => {
-    const { temp } = day.main;
-    const desc = day.weather[0].description;
-    weatherDiv[index].innerHTML = `${temp}℃ <br> ${desc}`;
+    const temperature = day.main.temp;
+    const weatherToday = day.weather[0].main;
+    weatherDiv[index].innerHTML = `${temperature}℃ <br> ${weatherToday}`;
   });
 }
 
@@ -32,9 +32,9 @@ function fetchWeather(latitude, longitude) {
 
 function getWeather() {
   navigator.geolocation.getCurrentPosition((position) => {
-    const { latitude } = position.coords;
-    const { longitude } = position.coords;
-    fetchWeather(latitude, longitude);
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    fetchWeather(lat, lon);
   });
 }
 
