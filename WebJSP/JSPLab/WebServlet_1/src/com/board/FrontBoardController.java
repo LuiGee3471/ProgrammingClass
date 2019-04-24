@@ -1,6 +1,8 @@
 package com.board;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,56 +16,84 @@ public class FrontBoardController extends HttpServlet {
   public FrontBoardController() {
   }
 
-  // GET ¹æ½Ä°ú POST ¹æ½Ä µÎ °¡Áö ÇÔ¼ö¿¡ µ¿ÀÛÇÏ´Â ÇÔ¼ö
-  // 1. HttpServletÀÌ Á¦°øÇÏ´Â service()°¡ ÀÖ´Ù
-  // 2. º°µµÀÇ »ç¿ëÀÚ Á¤ÀÇ ÇÔ¼ö »ı¼ºÇØ¼­ »ç¿ë: doProcess()
+  // GET ë°©ì‹ê³¼ POST ë°©ì‹ ë‘ ê°€ì§€ í•¨ìˆ˜ì— ë™ì‘í•˜ëŠ” í•¨ìˆ˜
+  // 1. HttpServletì´ ì œê³µí•˜ëŠ” service()ê°€ ìˆë‹¤
+  // 2. ë³„ë„ì˜ ì‚¬ìš©ì ì •ì˜ í•¨ìˆ˜ ìƒì„±í•´ì„œ ì‚¬ìš©: doProcess()
 
-  private void doProcess(HttpServletRequest request, HttpServletResponse response, String method) {
-    // doGet, doPost ¸ğµÎ ½ÇÇàµÇ´Â ÇÔ¼ö
-    System.out.println("Å¬¶óÀÌ¾ğÆ® ¿äÃ»: " + method);
+  private void doProcess(HttpServletRequest request, HttpServletResponse response, String method) throws ServletException, IOException {
+    // doGet, doPost ëª¨ë‘ ì‹¤í–‰ë˜ëŠ” í•¨ìˆ˜
+    System.out.println("í´ë¼ì´ì–¸íŠ¸ ìš”ì²­: " + method);
 
-    // 1. ¿äÃ» ¹Ş±â (Get, Post)
+    // 1. ìš”ì²­ ë°›ê¸° (Get, Post)
 
-    // 2. ¿äÃ» ÆÇ´Ü (ÆÇ´ÜÀÇ ±âÁØ): command ¹æ½Ä
-    // Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»ÀÌ ¾î¶² °ÍÀÎÁö ÆÇ´Ü?
-    // 2.1 parameter ±âÁØÀ¸·Î ÆÇ´Ü
+    // 2. ìš”ì²­ íŒë‹¨ (íŒë‹¨ì˜ ê¸°ì¤€): command ë°©ì‹
+    // í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì´ ì–´ë–¤ ê²ƒì¸ì§€ íŒë‹¨?
+    // 2.1 parameter ê¸°ì¤€ìœ¼ë¡œ íŒë‹¨
     // 2.2 /board?cmd=login&userid=kglim&pwd=1004
     // String command = request.getParameter("cmd");
-    // if (command.equals("login") { ·Î±×ÀÎ }
-    // cmd >> null >> error.jsp ¼­ºñ½º
-    // cmd >> boardlist >> list.jsp ¼­ºñ½º
-    // cmd >> boardwrite >> write.jsp ¼­ºñ½º
+    // if (command.equals("login") { ë¡œê·¸ì¸ }
+    // cmd >> null >> error.jsp ì„œë¹„ìŠ¤
+    // cmd >> boardlist >> list.jsp ì„œë¹„ìŠ¤
+    // cmd >> boardwrite >> write.jsp ì„œë¹„ìŠ¤
 
-    // URL ¹æ½Ä
-    // ÀüÃ¼ ÁÖ¼Ò°ªÀ» °¡Áö°í ÆÇ´Ü
+    // URL ë°©ì‹
+    // ì „ì²´ ì£¼ì†Œê°’ì„ ê°€ì§€ê³  íŒë‹¨
     // board/boardlist >> /boardlist
     // board/boardwrite?title=aaa&content=bbb >> /boardwrite
-    // if (command.equals("/boardlist") { °Ô½ÃÆÇ ¸ñ·Ï }
-    // if (command.equals("/boardwrite") { °Ô½ÃÆÇ ±Û¾²±â }
+    // if (command.equals("/boardlist") { ê²Œì‹œíŒ ëª©ë¡ }
+    // if (command.equals("/boardwrite") { ê²Œì‹œíŒ ê¸€ì“°ê¸° }
 
-    // ±¸Çö
-    // 1. ¿äÃ»¹Ş±â (command ¹æ½Ä)
-    // ¿äÃ» ÁÖ¼Ò
+    // êµ¬í˜„
+    // 1. ìš”ì²­ë°›ê¸° (command ë°©ì‹)
+    // ìš”ì²­ ì£¼ì†Œ
     // localhost:8090/WebServlet_1/board?cmd=list
     String cmd = request.getParameter("cmd");
+    if (cmd == null) {
+      cmd = "";
+    }
 
-    // 2. ¿äÃ» ÆÇ´Ü (¾÷¹«¿¡ µû¶ó¼­ ¼­ºñ½º ±¸Çö)
+    // 2. ìš”ì²­ íŒë‹¨ (ì—…ë¬´ì— ë”°ë¼ì„œ ì„œë¹„ìŠ¤ êµ¬í˜„)
     String viewpage = null;
     if (cmd.equals("boardlist")) {
       viewpage = "/board/boardlist.jsp";
-      // DB ¿¬°á
+      // DB ì—°ê²°
       // SELECT
-      // ½ÇÇà > °á°ú(ResultSet) > °´Ã¼ ´ã±â
+      // ì‹¤í–‰ > ê²°ê³¼(ResultSet) > ê°ì²´ ë‹´ê¸°
       // boarddao dao = new boarddao();
       // List<board> boardlist = dao.selectboardlist();
       // request.setAttribute("list", boardlist);
       // view page forward
       // <c:set var="list" value="<%=request.getAttribute("list")%>>"
-    } else if (cmd.equals("boardwrite.jsp")) {
+    } else if (cmd.equals("boardwrite")) {
       viewpage = "/board/boardwrite.jsp";
+    } else if (cmd.equals("login")) {
+      // ë¬¸ì œ: WebContent í´ë” ì•ˆì— ìˆëŠ” íŒŒì¼ì€
+      // í´ë¼ì´ì–¸íŠ¸ê°€ ì§ì ‘ ì ‘ê·¼ì´ ê°€ëŠ¥í•˜ë‹¤
+      // localhost:8090/WebServlet_1/board/boardlist.jsp
+      // WebContent/WEB-INF í´ë”(ë³´ì•ˆ í´ë”) > Client (404)
+
+      // 1. WEB-INF ì ‘ê·¼: 404 Error
+      // 2. WEB-INF í™œìš©: WEB-INF/views/board, WEB-INF/views/member,
+      // WEB-INF/views/admin....
+      // ë‚´ë¶€ì—ì„œëŠ” ì„œë¡œ ì ‘ê·¼ì´ ê°€ëŠ¥í•˜ë‹¤
+      // forward ì ‘ê·¼ ë°©ì‹ì„ í†µí•´ì„œ ë³´ì•ˆ í´ë”ì˜ íŒŒì¼ì„ ì„œë¹„ìŠ¤í•  ìˆ˜ ìˆë‹¤
+      viewpage = "/WEB-INF/login/login.jsp";
     } else {
       viewpage = "/error/error.jsp";
     }
+    
+    // 3. ê²°ê³¼ ë§Œë“¤ê³  ì €ì¥
+    // ê°€ì •: List<Emp> list = new ArrayList<>();
+    // ê°€ì •: list.add(new Emp(2000,"ê¹€ìœ ì‹ "));
+    // ** request.setAttribute("emplist", list)
+    
+    // 4. view ì§€ì • > forward(request ê°ì²´ ê³µìœ )
+    RequestDispatcher dis = request.getRequestDispatcher(viewpage);
+    
+    // 5. view page forward ë°©ì‹ì„ í†µí•´ì„œ ì¶œë ¥í•  ë°ì´í„° ì „ë‹¬
+    dis.forward(request, response);
+    // servlet ê°€ì§€ê³  ìˆëŠ” request ê°ì²´ >> view ì „ë‹¬ >> view ì¶œë ¥
+
   }
 
   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

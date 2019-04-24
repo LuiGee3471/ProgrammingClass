@@ -4,6 +4,11 @@
     <meta charset="utf-8" />
     <title>Title</title>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
   </head>
   <body>
     <header>
@@ -11,11 +16,13 @@
     </header>
 
     <div id="main">
-      <div id="w1" class="weather_day"></div>
-      <div id="w2" class="weather_day"></div>
-      <div id="w3" class="weather_day"></div>
-      <div id="w4" class="weather_day"></div>
-      <div id="w5" class="weather_day"></div>
+      <!-- <div id="w1" class="weather_day"></div> -->
+      <!-- <div id="w2" class="weather_day"></div> -->
+      <div id="w3" class="weather_day">
+        <canvas id="myChart" width="400" height="400"></canvas>
+      </div>
+      <!-- <div id="w4" class="weather_day"></div> -->
+      <!-- <div id="w5" class="weather_day"></div> -->
     </div>
     <button id="button">Get Weather</button>
     <script src="weather.js"></script>

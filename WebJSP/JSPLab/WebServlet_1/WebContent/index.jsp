@@ -22,8 +22,12 @@
   <br>
   <a href="<%=request.getContextPath()%>/board?cmd=boardwrite">게시판 글쓰기</a>
   <br>
+  <a href="<%=request.getContextPath()%>/board?cmd=login">로그인</a>
+  <br>
   <a href="<%=request.getContextPath()%>/board">Error 유도하기</a>
   <br>
   <a href="<%=request.getContextPath()%>/board?cmd=boarddelete">삭제하기(Error)</a>
+  <h3>FrontServletController</h3>
+  <a href="<%=request.getContextPath()%>/Front.do?cmd=greeting">요청 보내기(@WebServlet)</a>
 </body>
 </html>

@@ -9,121 +9,112 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 /*
- * ¼­ºí¸´(Servlet)
- * Java ÆÄÀÏ·Î À¥ ¼­ºñ½º¸¦ ÇÒ ¸ñÀûÀ¸·Î ¸¸µç ÆÄÀÏ
- * ¼­ºí¸´ Á¶°Ç : request, response °´Ã¼ »ç¿ë °¡´É
+ * ì„œë¸”ë¦¿(Servlet)
+ * Java íŒŒì¼ë¡œ ì›¹ ì„œë¹„ìŠ¤ë¥¼ í•  ëª©ì ìœ¼ë¡œ ë§Œë“  íŒŒì¼
+ * ì„œë¸”ë¦¿ ì¡°ê±´ : request, response ê°ì²´ ì‚¬ìš© ê°€ëŠ¥
  * 
- * 1. extends HttpServlet ¹İµå½Ã ÇÊ¿ä (À¥ È¯°æ¿¡¼­ Á¦°øÇÏ´Â ¿äÃ», ÀÀ´ä °´Ã¼ Ã³¸® °¡´É)
+ * 1. extends HttpServlet ë°˜ë“œì‹œ í•„ìš” (ì›¹ í™˜ê²½ì—ì„œ ì œê³µí•˜ëŠ” ìš”ì²­, ì‘ë‹µ ê°ì²´ ì²˜ë¦¬ ê°€ëŠ¥)
  * 
- * 2. SimpleController ¼­ºí¸´
+ * 2. SimpleController ì„œë¸”ë¦¿
  * 
- * 3. SimpleController ¼­ºí¸´Àº ÀÌº¥Æ® ±â¹İ µ¿ÀÛ
- * (ÇÔ¼ö°¡ Æ¯Á¤ »óÈ²¿¡ ¸ÂÃç ÀÚµ¿ È£Ãâ)
- * [»óÈ²] : Å¬¶óÀÌ¾ğÆ®°¡ SimpleController ¿äÃ»À» º¸³ÂÀ» ¶§
- * Àü¼Û¹æ½ÄÀÌ GETÀ¸·Î ¿äÃ»ÀÌ ¿À¸é ÀÚµ¿À¸·Î È£ÃâµÇ´Â ÇÔ¼ö : doGet
- * Àü¼Û¹æ½ÄÀÌ POST·Î ¿äÃ»ÀÌ ¿À¸é ÀÚµ¿À¸·Î È£ÃâµÇ´Â ÇÔ¼ö : doPost
+ * 3. SimpleController ì„œë¸”ë¦¿ì€ ì´ë²¤íŠ¸ ê¸°ë°˜ ë™ì‘
+ * (í•¨ìˆ˜ê°€ íŠ¹ì • ìƒí™©ì— ë§ì¶° ìë™ í˜¸ì¶œ)
+ * [ìƒí™©] : í´ë¼ì´ì–¸íŠ¸ê°€ SimpleController ìš”ì²­ì„ ë³´ëƒˆì„ ë•Œ
+ * ì „ì†¡ë°©ì‹ì´ GETìœ¼ë¡œ ìš”ì²­ì´ ì˜¤ë©´ ìë™ìœ¼ë¡œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜ : doGet
+ * ì „ì†¡ë°©ì‹ì´ POSTë¡œ ìš”ì²­ì´ ì˜¤ë©´ ìë™ìœ¼ë¡œ í˜¸ì¶œë˜ëŠ” í•¨ìˆ˜ : doPost
  * HttpServletRequest request, HttpServletResponse response
- * parameter¸¦ Á¦°ø ¹ŞÀ½À¸·Î½á parameter ¹Ş°í ÀÀ´äµµ °¡´ÉÇÏ´Ù
+ * parameterë¥¼ ì œê³µ ë°›ìŒìœ¼ë¡œì¨ parameter ë°›ê³  ì‘ë‹µë„ ê°€ëŠ¥í•˜ë‹¤
  * 
- * doGet() È£ÃâµÇ´Â °æ¿ì : <a href="board.do?id=kglim">¼­¹ö¿¡ ¿äÃ»</a>
- * doPost() È£ÃâµÇ´Â °æ¿ì : <form method="POST" ... submit() => doPost()
+ * doGet() í˜¸ì¶œë˜ëŠ” ê²½ìš° : <a href="board.do?id=kglim">ì„œë²„ì— ìš”ì²­</a>
+ * doPost() í˜¸ì¶œë˜ëŠ” ê²½ìš° : <form method="POST" ... submit() => doPost()
  * 
- * 3.1 Å¬¶óÀÌ¾ğÆ®ÀÇ Á¤º¸¸¦ ¾ò¾î¿Â´Ù : request.getParameter()
+ * 3.1 í´ë¼ì´ì–¸íŠ¸ì˜ ì •ë³´ë¥¼ ì–»ì–´ì˜¨ë‹¤ : request.getParameter()
  * 
- * 4. ½ÇÇà´Ü°è
- * SimpleController (¼­ºí¸´) ÀÚ¹Ù ÆÄÀÏ ¿äÃ» -> ÄÄÆÄÀÏ - Å¬·¡½º ÆÄÀÏ -> ½ÇÇà -> °á°ú ¸®ÅÏ
+ * 4. ì‹¤í–‰ë‹¨ê³„
+ * SimpleController (ì„œë¸”ë¦¿) ìë°” íŒŒì¼ ìš”ì²­ -> ì»´íŒŒì¼ - í´ë˜ìŠ¤ íŒŒì¼ -> ì‹¤í–‰ -> ê²°ê³¼ ë¦¬í„´
  * 
- * 5. ÀÚ¹Ù ¸ÖÆ¼ ¾²·¹µå (À¥ È¿À²ÀûÀ¸·Î »ç¿ë)
+ * 5. ìë°” ë©€í‹° ì“°ë ˆë“œ (ì›¹ íš¨ìœ¨ì ìœ¼ë¡œ ì‚¬ìš©)
  * 
- * 6. ¸¸µé¾îÁø ¼ø¼­
- * Servlet => JSP => MVC ÆĞÅÏ => Framework(Spring)
+ * 6. ë§Œë“¤ì–´ì§„ ìˆœì„œ
+ * Servlet => JSP => MVC íŒ¨í„´ => Framework(Spring)
  * 
- * 7. ÃÖÁ¾: Model2 ±â¹İÀÇ MVC ÆĞÅÏÀ» Àû¿ëÇÑ ÇÁ·ÎÁ§Æ®
+ * 7. ìµœì¢…: Model2 ê¸°ë°˜ì˜ MVC íŒ¨í„´ì„ ì ìš©í•œ í”„ë¡œì íŠ¸
  * 
- * 7.1: JSP¸¸ °¡Áö°í °³¹ß > °¡´É(»ç½ÇÀº ModelÀº ¸¸µç´Ù(DAO, DTO)) > Model1 ¹æ½Ä
- *       JSP°¡ ¸ğµç Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» ¹Ş°í Ã³¸®±îÁö ´ã´ç
+ * 7.1: JSPë§Œ ê°€ì§€ê³  ê°œë°œ > ê°€ëŠ¥(ì‚¬ì‹¤ì€ Modelì€ ë§Œë“ ë‹¤(DAO, DTO)) > Model1 ë°©ì‹
+ *       JSPê°€ ëª¨ë“  í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ë°›ê³  ì²˜ë¦¬ê¹Œì§€ ë‹´ë‹¹
  *      
- *      Model2 ¹æ½ÄÀÇ MVC
- *      Model(DTO, DAO) >> ¼ø¼öÇÑ Java Å¬·¡½º
- *      View >> JSP(EL & JSTL) >> È­¸é ±¸¼º
- *      ±×·³ ´©°¡ Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» ¹Ş°í ÆÄ¾ÇÇÏ°í Ã³¸®ÇÏ´Â °úÁ¤À» ´ã´çÇÒ±î
- *      Controller >> Servlet ÀÛ¼º(extends HttpServlet)
- *      1. Å¬¶óÀÌ¾ğÆ®ÀÇ ¿äÃ»À» ÆÄ¾Ç (·Î±×ÀÎ, °Ô½ÃÆÇ ±Û¾²±â, °Ô½ÃÆÇ »ó¼¼º¸±â)
- *      2. ¿äÃ» ÆÄ¾ÇÀ» ÅëÇØ¼­ ´Ù¾çÇÑ MVC¸¦ Àû¿ë: DTO °´Ã¼ »ı¼º, DAO °´Ã¼ »ı¼º
+ *      Model2 ë°©ì‹ì˜ MVC
+ *      Model(DTO, DAO) >> ìˆœìˆ˜í•œ Java í´ë˜ìŠ¤
+ *      View >> JSP(EL & JSTL) >> í™”ë©´ êµ¬ì„±
+ *      ê·¸ëŸ¼ ëˆ„ê°€ í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ ë°›ê³  íŒŒì•…í•˜ê³  ì²˜ë¦¬í•˜ëŠ” ê³¼ì •ì„ ë‹´ë‹¹í• ê¹Œ
+ *      Controller >> Servlet ì‘ì„±(extends HttpServlet)
+ *      1. í´ë¼ì´ì–¸íŠ¸ì˜ ìš”ì²­ì„ íŒŒì•… (ë¡œê·¸ì¸, ê²Œì‹œíŒ ê¸€ì“°ê¸°, ê²Œì‹œíŒ ìƒì„¸ë³´ê¸°)
+ *      2. ìš”ì²­ íŒŒì•…ì„ í†µí•´ì„œ ë‹¤ì–‘í•œ MVCë¥¼ ì ìš©: DTO ê°ì²´ ìƒì„±, DAO ê°ì²´ ìƒì„±
  *      
- * 8. ¼­ºí¸´ ÆÄÀÏÀ» Å¬¶óÀÌ¾ğÆ®¿¡¼­ ¾î¶»°Ô ¿äÃ»ÇÒ±î
+ * 8. ì„œë¸”ë¦¿ íŒŒì¼ì„ í´ë¼ì´ì–¸íŠ¸ì—ì„œ ì–´ë–»ê²Œ ìš”ì²­í• ê¹Œ
  * JSP: 
  *   <form action="loginok.jsp" method="POST">
  *   localhost:8090/WebJSP/WebServlet_1/loginok.jsp
  *   
  * 8.2
- * ¼­ºí¸´ ÆÄÀÏ ¿äÃ»Àº
- * 1. web.xml ¼³Á¤À» ÅëÇØ¼­ ÁÖ¼Ò¸¸µé±â
+ * ì„œë¸”ë¦¿ íŒŒì¼ ìš”ì²­ì€
+ * 1. web.xml ì„¤ì •ì„ í†µí•´ì„œ ì£¼ì†Œë§Œë“¤ê¸°
  * <servlet>
-		<servlet-name>simplecontroller</servlet-name>
-		<servlet-class>com.SimpleController</servlet-class>
-	</servlet>
-	<servlet-mapping>
-	    <servlet-name>simplecontroller</servlet-name>
-	    <url-pattern>/simple</url-pattern>
-	</servlet-mapping>
+    <servlet-name>simplecontroller</servlet-name>
+    <servlet-class>com.SimpleController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+      <servlet-name>simplecontroller</servlet-name>
+      <url-pattern>/simple</url-pattern>
+  </servlet-mapping>
    localhost:8090/WebServlet_1/simple
-	
- * 2. Servlet ÆÄÀÏÀÇ »ó´Ü¿¡ @WebServlet("/SimpleController")
+  
+ * 2. Servlet íŒŒì¼ì˜ ìƒë‹¨ì— @WebServlet("/SimpleController")
  * localhost:8090/WebServlet_1/SimpleController
  * 
- * ÃÖÃÊ ¿äÃ» -> ±× ¶§ servlet ÄÄÆÄÀÏ -> ½ÇÇà -> doGet or doPost È£Ãâ
- * µÎ ¹øÂ°ºÎÅÍ -> ¹Ù·Î ½ÇÇà -> doGet or doPost È£Ãâ
- * ÃÖÃÊ ¿äÃ» : 1. ¼­¹ö ½ÃÀÛ 2. °³¹ßÀÚ°¡ ¼öÁ¤
+ * ìµœì´ˆ ìš”ì²­ -> ê·¸ ë•Œ servlet ì»´íŒŒì¼ -> ì‹¤í–‰ -> doGet or doPost í˜¸ì¶œ
+ * ë‘ ë²ˆì§¸ë¶€í„° -> ë°”ë¡œ ì‹¤í–‰ -> doGet or doPost í˜¸ì¶œ
+ * ìµœì´ˆ ìš”ì²­ : 1. ì„œë²„ ì‹œì‘ 2. ê°œë°œìê°€ ìˆ˜ì •
  */
 
 // @WebServlet("/SimpleController")
 public class SimpleController extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public SimpleController() {
-        super();
+  private static final long serialVersionUID = 1L;
+
+  public SimpleController() {
+    super();
+  }
+
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    System.out.println("í´ë¼ì´ì–¸íŠ¸ ìš”ì²­");
+
+    // 1. ì‚¬ìš©ìì˜ ìš”ì²­ íŒŒì•…
+    String type = request.getParameter("type");
+
+    // 2. ìš”ì²­ì— ë”°ë¥¸ ì—…ë¬´ ìˆ˜í–‰ (service ì‹¤í–‰)
+    Object resultobj = null;
+    if (type == null || type.equals("greeting")) {
+      resultobj = "Hello, world";
+    } else if (type.equals("date")) {
+      resultobj = new java.util.Date();
+    } else {
+      resultobj = "invalid type";
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("Å¬¶óÀÌ¾ğÆ® ¿äÃ»");
-		
-		// 1. »ç¿ëÀÚÀÇ ¿äÃ» ÆÄ¾Ç
-		String type = request.getParameter("type");
-		
-		// 2. ¿äÃ»¿¡ µû¸¥ ¾÷¹« ¼öÇà (service ½ÇÇà)
-		Object resultobj = null;
-		if (type == null || type.equals("greeting")) {
-			resultobj = "Hello, world";
-		} else if (type.equals("date")) {
-			resultobj = new java.util.Date();
-		} else {
-			resultobj = "invalid type";
-		}
-		
-		// 3. ¿äÃ» ¿Ï·á¿¡ µû¶ó¼­ ±× °á°ú ¿äÃ»ÇÑ »ç¿ëÀÚ¿¡°Ô Àü´Ş
-		// Á¤º¸¸¦ ÀúÀå : request °´Ã¼, session °´Ã¼, application °´Ã¼
-		request.setAttribute("result", resultobj);
-		
-		// 4. °á°ú º¸¿©ÁÖ±â > ÇÊ¿äÇÑ view¸¦ ÁöÁ¤ÇÑ´Ù.
-		// È­¸éÀ» Ãâ·ÂÇÒ ÆäÀÌÁö¸¦ Á¤ÇÏ°í -> Ãâ·ÂÇÒ µ¥ÀÌÅÍ¸¦ ³Ñ°ÜÁØ´Ù.
-		// Á¦¾î±Ç(forward)
-    RequestDispatcher	dis =	request.getRequestDispatcher("/simpleView.jsp");
-    // ³»°¡ view·Î ÁöÁ¤ÇÑ °÷¿¡ forward ÀÛ¾÷
-    dis.forward(request, response);
-	}
+    // 3. ìš”ì²­ ì™„ë£Œì— ë”°ë¼ì„œ ê·¸ ê²°ê³¼ ìš”ì²­í•œ ì‚¬ìš©ìì—ê²Œ ì „ë‹¬
+    // ì •ë³´ë¥¼ ì €ì¥ : request ê°ì²´, session ê°ì²´, application ê°ì²´
+    request.setAttribute("result", resultobj);
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
-	}
+    // 4. ê²°ê³¼ ë³´ì—¬ì£¼ê¸° > í•„ìš”í•œ viewë¥¼ ì§€ì •í•œë‹¤.
+    // í™”ë©´ì„ ì¶œë ¥í•  í˜ì´ì§€ë¥¼ ì •í•˜ê³  -> ì¶œë ¥í•  ë°ì´í„°ë¥¼ ë„˜ê²¨ì¤€ë‹¤.
+    // ì œì–´ê¶Œ(forward)
+    RequestDispatcher dis = request.getRequestDispatcher("/simpleView.jsp");
+    // ë‚´ê°€ viewë¡œ ì§€ì •í•œ ê³³ì— forward ì‘ì—…
+    dis.forward(request, response);
+  }
+
+  protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    doGet(request, response);
+  }
 
 }
