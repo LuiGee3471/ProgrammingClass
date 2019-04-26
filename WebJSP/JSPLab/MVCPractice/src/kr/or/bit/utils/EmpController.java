@@ -29,6 +29,7 @@ public class EmpController extends HttpServlet {
   }
 
   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    request.setCharacterEncoding("UTF-8");
     String name = request.getParameter("search");
     
     try {
@@ -65,9 +66,9 @@ public class EmpController extends HttpServlet {
           e.setDname(rs.getString(8));
           empList.add(e);
         } while (rs.next());
-        result = "Á¶È¸ °á°ú: " + rs.getRow() + "¸í";
+        result = "ï¿½ï¿½È¸ ï¿½ï¿½ï¿½: " + rs.getRow() + "ï¿½ï¿½";
       } else {
-        result = "Á¶È¸ °á°ú°¡ ¾ø½À´Ï´Ù.";
+        result = "ï¿½ï¿½È¸ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.";
       }
     } catch (SQLException e) {
       System.out.println(e.getMessage());
