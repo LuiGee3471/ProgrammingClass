@@ -13,6 +13,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import kr.or.bit.dto.Memo;
+import kr.or.bit.utils.SingletonHelper;
 
 // CRUD 작업
 // DB서버 통신 > CRUD method 제공
@@ -33,7 +34,6 @@ import kr.or.bit.dto.Memo;
 // public List<Memo> selectMemo() {}
 // List<Memo> list = new ArrayList<>();
 public class MemoDao {
-  private Connection conn;
   private PreparedStatement pstmt;
   private ResultSet rs;
   private DataSource ds;
@@ -44,6 +44,7 @@ public class MemoDao {
   }
 
   public List<Memo> selectAll() throws SQLException {
+    Connection conn = null;
     List<Memo> list = new ArrayList<Memo>();
     String sql = "select * from memo";
 
@@ -62,8 +63,8 @@ public class MemoDao {
     } catch (Exception e) {
       System.out.println(e.getMessage());
     } finally {
-      rs.close();
-      pstmt.close();
+      SingletonHelper.close(rs);
+      SingletonHelper.close(pstmt);
       conn.close();
     }
 
@@ -71,6 +72,7 @@ public class MemoDao {
   }
 
   public Memo selectById(String id) throws SQLException {
+    Connection conn = null;
     Memo memo = null;
     String sql = "select * from memo where id = ?";
 
@@ -89,8 +91,8 @@ public class MemoDao {
     } catch (Exception e) {
       System.out.println(e.getMessage());
     } finally {
-      rs.close();
-      pstmt.close();
+      SingletonHelper.close(rs);
+      SingletonHelper.close(pstmt);
       conn.close();
     }
 
@@ -98,6 +100,7 @@ public class MemoDao {
   }
 
   public int insertMemo(Memo memo) {
+    Connection conn = null;
     int row = 0;
     String sql = "insert into memo (id, email, content) values (?, ?, ?)";
 
@@ -107,22 +110,26 @@ public class MemoDao {
       pstmt.setString(1, memo.getId());
       pstmt.setString(2, memo.getEmail());
       pstmt.setString(3, memo.getContent());
-      
+
       row = pstmt.executeUpdate();
     } catch (Exception e) {
       System.out.println(e.getMessage());
+      row = -1;
     } finally {
+      SingletonHelper.close(rs);
+      SingletonHelper.close(pstmt);
       try {
-        pstmt.close();
         conn.close();
       } catch (SQLException e) {
         e.printStackTrace();
       }
     }
+
     return row;
   }
   
   public String hasId(String id) {
+    Connection conn = null;
     String hasId = "false";
     String sql = "select id from memo where id = ?";
     
@@ -131,16 +138,16 @@ public class MemoDao {
       pstmt = conn.prepareStatement(sql);
       pstmt.setString(1, id);
       rs = pstmt.executeQuery();
+      
       if (rs.next()) {
         hasId = "true";
       }
-      
     } catch (Exception e) {
       System.out.println(e.getMessage());
     } finally {
+      SingletonHelper.close(rs);
+      SingletonHelper.close(pstmt);
       try {
-        rs.close();
-        pstmt.close();
         conn.close();
       } catch (SQLException e) {
         e.printStackTrace();

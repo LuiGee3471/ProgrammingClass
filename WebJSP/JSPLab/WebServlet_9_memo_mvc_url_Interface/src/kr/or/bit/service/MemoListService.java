@@ -10,27 +10,23 @@ import kr.or.bit.action.ActionForward;
 import kr.or.bit.dao.MemoDao;
 import kr.or.bit.dto.Memo;
 
-public class MemoListAction implements Action {
-
+public class MemoListService implements Action {
   @Override
   public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-    
-    List<Memo> memolist = null;
     ActionForward forward = null;
-    
-    MemoDao dao;
+
     try {
-      dao = new MemoDao();
-      memolist = dao.selectAll();
-      
+      MemoDao dao = new MemoDao();
+      List<Memo> memolist = dao.selectAll();
+
       request.setAttribute("memolist", memolist);
       
       forward = new ActionForward();
       forward.setRedirect(false);
-      forward.setPath("/WEB-INF/memo/memolist.jsp");
+      forward.setPath("/WEB-INF/views/memolist.jsp");
     } catch (Exception e) {
-      e.printStackTrace();
-    } 
+      System.out.println(e.getMessage());
+    }
     
     return forward;
   }

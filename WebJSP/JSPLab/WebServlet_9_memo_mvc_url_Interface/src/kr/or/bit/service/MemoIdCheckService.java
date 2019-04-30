@@ -1,36 +1,37 @@
 package kr.or.bit.service;
 
-import java.util.List;
+import java.io.PrintWriter;
+import java.sql.SQLException;
 
+import javax.naming.NamingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.dao.MemoDao;
-import kr.or.bit.dto.Memo;
 
-public class MemoListAction implements Action {
+// POINT 비동기(ajax)
+// 동기식 처리와 같은 process
 
+public class MemoIdCheckService implements Action {
   @Override
   public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-    
-    List<Memo> memolist = null;
+    String hasId = null;
     ActionForward forward = null;
     
-    MemoDao dao;
     try {
-      dao = new MemoDao();
-      memolist = dao.selectAll();
-      
-      request.setAttribute("memolist", memolist);
+      String id = request.getParameter("id");
+      MemoDao dao = new MemoDao();
+      hasId = dao.hasId(id);
+      request.setAttribute("message", hasId);
       
       forward = new ActionForward();
       forward.setRedirect(false);
-      forward.setPath("/WEB-INF/memo/memolist.jsp");
+      forward.setPath("/WEB-INF/views/uservalid.jsp");
     } catch (Exception e) {
-      e.printStackTrace();
-    } 
+      System.out.println(e.getMessage());
+    }
     
     return forward;
   }

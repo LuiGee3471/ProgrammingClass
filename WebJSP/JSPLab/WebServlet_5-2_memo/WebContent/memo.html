@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>Insert title here</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
   </head>
   <body>
     <div style="margin-top: 70px;"></div>
@@ -44,23 +45,27 @@
     <hr />
     <a href="list.do">목록보기</a>
     <script>
-      const checkIdBtn = document.getElementById('message');
-      const id = document.getElementById('id');
-      function checkIdExists() {
-        fetch(`check.do?id=${id.value}`)
-          .then(response => response.text())
-          .then(text => {
-            const oldScript = document.getElementById('script');
-            if (oldScript !== null) {
-              oldScript.remove();
+      $('#message').click(function() {
+        if ($('#id').val() === '') {
+          alert('ID를 입력해주세요.');
+          $('#id').focus();
+          return;
+        }
+
+        $.ajax({
+          url: 'check.do',
+          data: { id: $('#id').val() },
+          dataType: 'html',
+          success: function(data) {
+            var hasId = data.trim();
+            if (hasId === 'false') {
+              alert('사용 가능합니다.');
+            } else {
+              alert('이미 사용한 ID입니다.');
             }
-            const newScript = document.createElement('script');
-            newScript.setAttribute('id', 'script');
-            newScript.innerHTML = text;
-            document.body.appendChild(newScript);
-          });
-      }
-      checkIdBtn.addEventListener('click', checkIdExists);
+          },
+        });
+      });
     </script>
   </body>
 </html>
